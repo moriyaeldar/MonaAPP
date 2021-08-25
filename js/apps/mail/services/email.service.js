@@ -22,7 +22,7 @@ function getMails() {
 }
 
 function addMail({ to, body }) {
-    const mail = _createMail(to, body);
+    const mail = _createSentMail(to, body);
     gSentEmails.push(mail)
     return Promise.resolve();
 }
