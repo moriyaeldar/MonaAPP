@@ -1,16 +1,9 @@
-import { utilService } from "../services/utilService.js"
+import { utilService } from "../../../services/util.service.js"
 export const emailService = {
     getMails
 }
 
-const email = {
-    id: utilService.makeId(),
-    subject: 'Miss you!',
-    body: 'Would love to catch up sometimes',
-    isRead: false,
-    sentAt: 1551133930594,
-    to: 'momo@momo.com'
-}
+const gEmails = _createMails();
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -19,17 +12,29 @@ const loggedinUser = {
 
 
 function getMails() {
-    return gEmails;
+    debugger
+    console.log(gEmails);
+    return Promise.resolve(gEmails);
 }
 
-function _createMail(){
-return {
-    id: utilService.makeId(),
-    subject: 'Miss you!',
-    body: utilService.makeLorem(20),
-    isRead: false,
-    sentAt: 1551133930594,
-    to: 'momo@momo.com'
+function _createMail() {
+    return {
+        id: utilService.makeId(),
+        subject: 'Miss you!',
+        body: utilService.makeLorem(20),
+        isRead: false,
+        sentAt: 1551133930594,
+        to: 'momo@momo.com'
+    }
 }
+
+function _createMails() {
+    return [
+        _createMail(),
+        _createMail(),
+        _createMail(),
+        _createMail(),
+        _createMail()
+    ]
 }
 

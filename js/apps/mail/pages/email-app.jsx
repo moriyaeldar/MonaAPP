@@ -5,7 +5,12 @@ export class MailApp extends React.Component {
         mails: []
     }
 
-    loadMails() {
+    componentDidMount() {
+        this.loadMails();
+    }
+
+    loadMails = () => {
+        debugger
         emailService.getMails().then((mails) => {
             console.log(mails);
             this.setState({ mails });
@@ -14,6 +19,7 @@ export class MailApp extends React.Component {
 
     render() {
         const { mails } = this.state;
+
         return (
             <section className="emailApp">
                 <h1>welcome to email app</h1>
