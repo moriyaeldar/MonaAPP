@@ -23,15 +23,6 @@ h1{
     cursor: pointer;
 }
 
-button{
-    cursor: pointer;
-    background-color: dimgray;
-    color: gainsboro;
-    border-radius: 25px;
-    width: 150px;
-    margin: 4px;
-    font-weight: bold;
-}
 .sale{
     width: 80px;
     height: 80px;

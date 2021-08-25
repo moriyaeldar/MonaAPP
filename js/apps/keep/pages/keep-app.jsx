@@ -21,6 +21,17 @@ export class KeepApp extends React.Component {
             this.loadNotes();
         })
     }
+
+    onAddNote=(note)=>{
+        noteService.addNote(note).then(() => {
+            this.loadNotes();
+        })
+    }
+    onEditNote=(note)=>{
+        noteService.updateNote(note).then(() => {
+            this.loadNotes();
+        })
+    }
   
     // onSetFilter = (filterBy) => {
     //   this.setState({ filterBy }, this.loadNotes);
@@ -31,7 +42,7 @@ export class KeepApp extends React.Component {
       const { notes } = this.state;
       return (
         <section className="keep-app">
-              <NotesList notes={notes} onDeleteNote={this.onDeleteNote} />
+              <NotesList notes={notes} onDeleteNote={this.onDeleteNote} onAddNote={this.onAddNote} onEditNote={this.onEditNote}/>
         </section>
       );
     }

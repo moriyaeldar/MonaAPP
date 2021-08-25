@@ -7,6 +7,7 @@
 @import "./cmps/app-home.css";
 @import "./cmps/user-msg.css";
 @import "./cmps/app-header.css";
+@import "./apps/keep/note-add.css";
 
 body {
     background-color: rgb(231, 229, 179);

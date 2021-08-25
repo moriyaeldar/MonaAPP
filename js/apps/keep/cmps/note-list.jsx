@@ -1,12 +1,12 @@
 import { NotePreview } from "./note-preview.jsx";
-import { NoteEdit } from "./note-edit.jsx";
+import { NoteAdd } from "./note-add.jsx";
 
-export function NotesList({ notes,onDeleteNote}) {
+export function NotesList({ notes,onDeleteNote,onAddNote,onEditNote}) {
   return (
     <div className="note-list">
-        {/* <NoteEdit note={note}/> */}
+       <NoteAdd onAddNote={onAddNote}/>
       {notes.map((note) => (
-        <NotePreview key={note.id} note={note} onDeleteNote={onDeleteNote} />
+        <NotePreview key={note.id} note={note} onDeleteNote={onDeleteNote} onEditNote={onEditNote}  />
       ))}
     </div>
   );

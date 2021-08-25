@@ -1,50 +1,63 @@
 // const { Link } = ReactRouterDOM;
-import { noteService } from "../services/note.service.js";
-import { NoteEdit } from "./note-edit.jsx";
 
 export class NotePreview extends React.Component {
- state={
-   note:null
- }
+  state = {
+    note: null,
+    isEdittedMode: false,
+    title: null,
+    txt: null
+  };
 
- componentDidMount() {
- this.setState({note: this.props })
-
-}
-
-  
-  onSaveNote = (ev) => {
-    ev.preventDefault()
-    noteService.saveNote(this.state)
-      .then(() => this.props.history.push('/note'))
-
+  componentDidMount() {
+    this.setState({ note: this.props });
   }
+
+  onClickEditNote = (ev) => {
+    this.setState({ title: ev.target.title })
+    this.setState({ txt: ev.target.txt })
+
+    this.props.onEditNote(this.state);
+  };
 
   onClickDelete = () => {
-    this.props.onDeleteNote(this.state)
-}
-  
-  handleChange = ({ target }) => {
-    const field = target.name
-    const value = target.type === 'number' ? +target.value : target.value
-    this.setState(prevState => ({ note: { ...prevState.note, [field]: value } }))
-  }
+    this.props.onDeleteNote(this.state);
+  };
 
-  render(){
-   const { note } = this.props
-  return (
-    <article className="note-preview">
-    
-      {/* <img src={note.info.url} /> */}
-      <h3>{note.info.title}</h3>
-      <h3>{note.info.txt}</h3>
-      <button onClick={this.onSaveNote}>
-           🖋
-        </button>
-      <button onClick={this.onClickDelete}>
-           ✖
-        </button>
-    
-    </article>
-  ) };
+  onClickEdit = () => {
+    this.setState({ isEdittedMode: true });
+  };
+
+  render() {
+    const { note } = this.props;
+    return (
+      <article className="note-preview">
+        {/* <img src={note.info.url} /> */}
+        <h3>{note.info.title}</h3>
+        <h3>{note.info.txt}</h3>
+        <h4>
+          {this.state.isEdittedMode && (
+            <form className="note-edit" onSubmit={event => this.onClickEditNote(event)}>
+              <label htmlFor="title">title</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+               title={this.state.title}
+              />
+              <label htmlFor="note">note</label>
+              <input
+                type="text"
+                name="note"
+                id="note"
+                txt={this.state.txt}
+              />
+              <button>Save</button>
+            </form>
+          )}
+        </h4>
+        <button onClick={this.onClickEdit}>🖋</button>
+        <button onClick={this.onClickDelete}>✖</button>
+      </article>
+    );
+  }
 }

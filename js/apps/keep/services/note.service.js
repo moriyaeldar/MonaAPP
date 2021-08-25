@@ -1,9 +1,11 @@
 import { storageService } from '../../../services/storage.service.js'
-
+import { utilService } from '../../../services/util.service.js';
 export const noteService ={
     query,
     getNoteById,
-    deleteNote 
+    deleteNote,
+    updateNote,
+    addNote 
 }
 
 const KEY = 'Notes'
@@ -13,6 +15,7 @@ const notes = [
      type: "note-txt",
      isPinned: true,
      info: {
+         title: 'this is it!',
      txt: "Fullstack Me Baby!"
      }
     },
@@ -21,6 +24,7 @@ const notes = [
      type: "note-txt",
      isPinned: true,
      info: {
+         title:'need to by something',
      txt: "Shopping"
      }
     },
@@ -29,6 +33,7 @@ const notes = [
      type: "note-txt",
      isPinned: true,
      info: {
+         title:'its relly urgent',
      txt: "Go to to the dentist"
      }
     },
@@ -69,6 +74,8 @@ console.log(notes);
         return Promise.resolve(note)
     }
 
+   
+
     function deleteNote(noteId) {
         var noteIdx = notes.findIndex(function (note) {
             return noteId === note.id
@@ -78,21 +85,42 @@ console.log(notes);
         return Promise.resolve()
     }
     
-    function _addNote(noteToEdit) {
+    function addNote(noteToEdit) {
         var note = _createNote(noteToEdit)
-        notes.unshift(note)
-        _saveCarsToStorage();
+        notes.push(note)  
+          console.log(notes);
+
+        _saveNotesToStorage();
+        return Promise.resolve()
+    }
+
+    
+    function updateNote(noteToEdit) {
+        console.log(noteToEdit);
+        var noteIdx = notes.findIndex(function (note) {
+            return note.id === noteToEdit.id;
+        })
+        notes[noteIdx].info.txt = noteToEdit.txt
+        notes[noteIdx].info.title = noteToEdit.title
+        _saveNotesToStorage();
         return Promise.resolve()
     }
     
 function _createNote(noteToEdit) {
- return note.info.txt=noteToEdit
+ return {
+        id: utilService.makeId,
+        type: "note-txt",
+        isPinned: true,
+        info: {
+            title:noteToEdit.title,
+       txt:noteToEdit.txt
+          
 }
-
+}
+}
 
     function _saveNotesToStorage() {
         storageService.saveToStorage(KEY, notes)
       }
-    
     
     
