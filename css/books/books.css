@@ -1,9 +1,5 @@
 
-body {
-    background-color: rgba(247, 216, 244, 0.842);
-    font-family:Arial, Helvetica, sans-serif;
-    color: rgb(78, 78, 78);
-}
+
 h1{
     color: darkcyan;
     font-size: 30px;
@@ -47,17 +43,7 @@ img{
     height: 200px;
 }
 
-.home{
-    background-color: rgb(194, 190, 190);
-    height: 500px;
-    color: rgb(49, 13, 47);  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    border-style: solid ;
-    margin: 30px;
-}
+
 
 .aboutpic{
     width:400px;

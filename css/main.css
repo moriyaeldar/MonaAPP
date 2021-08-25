@@ -1,0 +1,14 @@
+@import "./apps/keep/note-preview.css";
+@import "./books/books.css";
+@import "./parts/base.css";
+@import "./parts/fonts.css";
+@import "./parts/helpers.css";
+@import "./cmps/app-about.css";
+@import "./cmps/app-home.css";
+@import "./cmps/user-msg.css";
+
+
+body {
+    background-color: rgb(190, 186, 119);
+    font-family:Arial, Helvetica, sans-serif;
+}

@@ -1,12 +1,9 @@
 const Router = ReactRouterDOM.HashRouter;
 const { Route, Switch } = ReactRouterDOM;
 
-import { BookApp } from "./pages/BookApp.jsx";
-import { BookDetails } from "./pages/BookDetails.jsx";
-import { About } from "./pages/About.jsx";
+
+import { } from "./pages/About.jsx";
 import { Home } from "./pages/Home.jsx";
-import { AppHeader } from "./cmps/AppHeader.jsx";
-import { AddReview } from "./cmps/AddReview.jsx";
 import { UserMsg } from "./cmps/UserMsg.jsx";
 
 export function App() {
