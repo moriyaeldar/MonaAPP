@@ -7,7 +7,7 @@
 .home h1 {
   color: rgb(39, 130, 221);
   font-family: fantasy;
-  font-size: 25px;
+  font-size: 55px;
 }
 .home h2 {
   color: grey;
@@ -15,5 +15,5 @@
 .home span {
   color: floralwhite;
   font-family: fantasy;
-  font-size: 25px;
+  font-size: 55px;
 }

@@ -1,4 +1,9 @@
 .about{
     justify-content: center;
     align-items: center;
+    color: rgb(29, 31, 129);
+}
+
+.about h1{
+    color: lightslategray;
 }
