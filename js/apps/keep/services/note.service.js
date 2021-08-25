@@ -1,7 +1,8 @@
 export const noteService ={
-    query 
+    query,
+    getNoteById 
 }
-
+const KEY = 'Notes'
 const notes = [
     {
      id: "n101",
@@ -38,5 +39,17 @@ const notes = [
     function query() {
         return Promise.resolve(notes)
     }
+
+    function getNoteById(noteId) {
+        var note = notes.find(function (note) {
+            return noteId ===note.id
+        })
+        return Promise.resolve(note)
+    }
+
+    function _saveNotesToStorage() {
+        storageService.saveToStorage(KEY, notes)
+      }
+    
     
     

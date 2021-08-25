@@ -1,7 +1,7 @@
 
 import { noteService } from "../services/note.service.js";
-
-export class BookApp extends React.Component {
+import { NotesList } from "../cmps/note-list.jsx";
+export class keepApp extends React.Component {
     state = {
       notes: [],
     };
