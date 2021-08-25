@@ -1,7 +1,9 @@
 import { emailService } from "../services/email.service.js"
 import { EmailList } from "../cmps/email-list.jsx";
+
 export class MailApp extends React.Component {
     state = {
+        boxType: 'Inbox',
         mails: []
     }
 
@@ -9,11 +11,20 @@ export class MailApp extends React.Component {
         this.loadMails();
     }
 
+    onChangeInputType = ({ target }) => {
+    
+      }
+
     loadMails = () => {
-        debugger
         emailService.getMails().then((mails) => {
             console.log(mails);
             this.setState({ mails });
+        })
+    }
+
+    onDeleteMail = (mail) => {
+        emailService.deleteMail(mail).then(() => {
+            this.loadMails();
         })
     }
 
@@ -23,7 +34,8 @@ export class MailApp extends React.Component {
         return (
             <section className="emailApp">
                 <h1>welcome to email app</h1>
-                <EmailList mails={mails} />
+                <div><button>Inbox</button><button>Sent</button></div>
+                <EmailList mails={mails} onDeleteMail={this.onDeleteMail} />
             </section>
         );
     }

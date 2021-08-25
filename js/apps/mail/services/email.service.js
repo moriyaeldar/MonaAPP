@@ -1,9 +1,14 @@
+'use strict'
+
 import { utilService } from "../../../services/util.service.js"
 export const emailService = {
-    getMails
+    getMails,
+    addMail,
+    deleteMail
 }
 
-const gEmails = _createMails();
+const gSentEmails = _createSentMails();
+// const gInboxEmails = _createInboxMails();
 
 const loggedinUser = {
     email: 'user@appsus.com',
@@ -12,29 +17,41 @@ const loggedinUser = {
 
 
 function getMails() {
-    debugger
-    console.log(gEmails);
-    return Promise.resolve(gEmails);
+    console.log(gSentEmails);
+    return Promise.resolve(gSentEmails);
 }
 
-function _createMail() {
+function addMail({ to, body }) {
+    const mail = _createMail(to, body);
+    gSentEmails.push(mail)
+    return Promise.resolve();
+}
+
+function deleteMail(mail) {
+    const id = mail.id;
+    const idx = gSentEmails.findIndex(mail => mail.id === id)
+    gSentEmails.splice(idx, 1);
+    return Promise.resolve();
+}
+
+function _createSentMail(to = 'momo@momo.com', body = utilService.makeLorem(20)) {
     return {
         id: utilService.makeId(),
         subject: 'Miss you!',
-        body: utilService.makeLorem(20),
+        body: body,
         isRead: false,
         sentAt: 1551133930594,
-        to: 'momo@momo.com'
+        to: to
     }
 }
 
-function _createMails() {
+function _createSentMails() {
     return [
-        _createMail(),
-        _createMail(),
-        _createMail(),
-        _createMail(),
-        _createMail()
+        _createSentMail(),
+        _createSentMail(),
+        _createSentMail(),
+        _createSentMail(),
+        _createSentMail()
     ]
 }
 
