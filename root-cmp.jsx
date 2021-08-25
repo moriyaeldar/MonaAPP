@@ -16,6 +16,7 @@ export function App() {
         <AppHeader />
       </header>
       <main>
+        <h1>Naama is in the house</h1>
         <Switch>
           <Route path="/book/add/:bookId" component={AddReview} />
           <Route path="/book/:bookId" component={BookDetails} />
