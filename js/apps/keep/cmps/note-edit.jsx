@@ -1,4 +1,5 @@
 import { noteService } from "../services/note.service.js"
+
 export class NoteEdit extends React.Component {
 
   state = {
@@ -6,14 +7,10 @@ export class NoteEdit extends React.Component {
     }
 
 
-  componentDidMount() {
-    const id = this.props.match.params.noteId
-    if (!id) return
-    noteService.getNoteById(id)
-      .then(note => {
-        this.setState({ note })
-      })
-  }
+    componentDidMount() {
+      this.setState({note: this.props })
+     
+     }
 
   handleChange = ({ target }) => {
     const field = target.name
@@ -29,13 +26,13 @@ export class NoteEdit extends React.Component {
   }
 
   render() {
-    const { note } = this.state.note
+    const { note } = this.props
     return (
       <form className="note-edit" onSubmit={this.onSaveNote}>
-        <h1>{id ? 'Edit' : 'Add'} note</h1>
+        <h6>{note.id ? 'Edit' : 'Add'} note</h6>
         <label htmlFor="note" >note</label>
         <input type="text" name="note" id="note" value={note} onChange={this.handleChange} />
-        <button>Save Note</button>
+        <button>Save</button>
       </form>
     )
   }
