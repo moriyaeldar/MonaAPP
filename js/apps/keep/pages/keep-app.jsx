@@ -1,7 +1,7 @@
 
 import { noteService } from "../services/note.service.js";
-
-export class BookApp extends React.Component {
+import { NotesList } from "../cmps/note-list.jsx";
+export class KeepApp extends React.Component {
     state = {
       notes: [],
     };
@@ -15,6 +15,12 @@ export class BookApp extends React.Component {
         this.setState({ notes });
       });
     };
+
+    onDeleteNote = (note) => {
+        noteService.deleteNote(note).then(() => {
+            this.loadNotes();
+        })
+    }
   
     // onSetFilter = (filterBy) => {
     //   this.setState({ filterBy }, this.loadNotes);
@@ -25,7 +31,7 @@ export class BookApp extends React.Component {
       const { notes } = this.state;
       return (
         <section className="keep-app">
-              <NotesList notes={notes}  />
+              <NotesList notes={notes} onDeleteNote={this.onDeleteNote} />
         </section>
       );
     }
