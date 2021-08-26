@@ -6,23 +6,23 @@ export const emailService = {
     addMail,
     deleteMail
 }
-
-const gSentEmails = _createSentMails();
-// const gInboxEmails = _createInboxMails();
-
 const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
 
+const gSentEmails = _createSentMails();
+const gInboxEmails = _createInboxMails();
 
-function getMails() {
-    console.log(gSentEmails);
+function getMails(boxType) {
+    if (boxType === 'Inbox') {
+        return Promise.resolve(gInboxEmails);
+    }
     return Promise.resolve(gSentEmails);
 }
 
 function addMail({ to, body }) {
-    const mail = _createSentMail(to, body);
+    const mail = _createMail(to, body);
     gSentEmails.push(mail)
     return Promise.resolve();
 }
@@ -34,24 +34,35 @@ function deleteMail(mail) {
     return Promise.resolve();
 }
 
-function _createSentMail(to = 'momo@momo.com', body = utilService.makeLorem(20)) {
+function _createMail(to = 'momo@momo.com', body = utilService.makeLorem(20), from = 'user@appsus.com') {
     return {
         id: utilService.makeId(),
         subject: 'Miss you!',
         body: body,
         isRead: false,
         sentAt: 1551133930594,
-        to: to
+        to: to,
+        from: from
     }
 }
 
 function _createSentMails() {
     return [
-        _createSentMail(),
-        _createSentMail(),
-        _createSentMail(),
-        _createSentMail(),
-        _createSentMail()
+        _createMail(),
+        _createMail(),
+        _createMail(),
+        _createMail(),
+        _createMail()
+    ]
+}
+
+function _createInboxMails() {
+    return [
+        _createMail(loggedinUser.email, utilService.makeLorem(20), 'momo@momo.com'),
+        _createMail(loggedinUser.email, utilService.makeLorem(20), 'momo@momo.com'),
+        _createMail(loggedinUser.email, utilService.makeLorem(20), 'momo@momo.com'),
+        _createMail(loggedinUser.email, utilService.makeLorem(20), 'momo@momo.com'),
+        _createMail(loggedinUser.email, utilService.makeLorem(20), 'momo@momo.com')
     ]
 }
 
