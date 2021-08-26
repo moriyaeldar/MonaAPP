@@ -1,32 +1,37 @@
 import { emailService } from "../services/email.service.js"
+import { EmailFilter } from "../cmps/email-filter.jsx";
+import { EmailFolderList } from "../cmps/email-folder-list.jsx";
 import { EmailList } from "../cmps/email-list.jsx";
 
 export class MailApp extends React.Component {
     state = {
-        boxType: 'Inbox',
-        mails: []
+        mails: [],
+        unreadCount: null,
+        criteria: {
+            status: 'Inbox',
+            isRead: null,
+            search: ''
+        }
     }
 
     componentDidMount() {
         this.loadMails();
     }
 
-    onChangeBoxType = (ev) => {
-        console.log('button clicked');
-        const boxType = ev.target.value;
-        console.log('box type:', boxType);
-        this.setState({ boxType });
-        console.log('set state box type:', this.state.boxType);
-        this.loadMails();
+    unreadNum = () => {
+        emailService.getUnreadCount().then(count => {
+            this.setState({ ...this.state, unreadCount: count })
+        })
+        return Promise.resolve();
     }
 
     loadMails = () => {
         console.log('loading mails');
-        emailService.getMails(this.state.boxType).then((mails) => {
-            console.log('after getting mails:', mails);
-            this.setState({ mails });
-            console.log('after set state mails:', this.state.mails);
-        })
+        this.unreadNum().then(
+            emailService.query(this.state.criteria).then((mails) => {
+                this.setState({ ...this.state, mails: mails });
+            })
+        )
     }
 
     onDeleteMail = (mail) => {
@@ -35,14 +40,18 @@ export class MailApp extends React.Component {
         })
     }
 
+    onSetCriteria = (field, value) => {
+        this.setState({ criteria: { ...this.state.criteria, [field]: value } }, this.loadMails);
+    };
+
     render() {
         const { mails } = this.state;
-
         return (
             <section className="emailApp">
                 <h1>welcome to email app</h1>
-                <button onClick={this.onChangeBoxType} value="Inbox">Inbox</button>
-                <button value="Sent" onClick={this.onChangeBoxType}>Sent</button>
+                <h3>Count of mail unread:{this.state.unreadCount}</h3>
+                <EmailFolderList onSetCriteria={this.onSetCriteria} />
+                <EmailFilter onSetCriteria={this.onSetCriteria} />
                 <EmailList mails={mails} onDeleteMail={this.onDeleteMail} />
             </section>
         );
