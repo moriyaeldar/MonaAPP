@@ -9,63 +9,69 @@ export const noteService ={
 }
 
 const KEY = 'Notes'
-const notes = [
-    {
-     id: "n101",
-     type: "note-txt",
-     isPinned: true,
-     info: {
-         title: 'this is it!',
-     txt: "Fullstack Me Baby!"
-     }
-    },
-    {
-     id: "n102",
-     type: "note-txt",
-     isPinned: true,
-     info: {
-         title:'need to by something',
-     txt: "Shopping"
-     }
-    },
-    {
-     id: "n103",
-     type: "note-txt",
-     isPinned: true,
-     info: {
-         title:'its relly urgent',
-     txt: "Go to to the dentist"
-     }
-    },
-    // {
-    //  id: "n104",
-    //  type: "note-img",
-    //  info: {
-    //  url: "http://some-img/me",
-    //  title: "Bobi and Me"
-    //  },
-    //  style: {
-    //  backgroundColor: "#00d"
-    //  }
-    // },
-    // {
-    //  id: "n105",
-    //  type: "note-todos",
-    //  info: {
-    //  label: "Get my stuff together",
-    //  todos: [
-    //  { txt: "Driving liscence", doneAt: null },
-    //  { txt: "Coding power", doneAt: 187111111 }
-    //  ]
-    //  }
-    // }
-    ];
+var notes;
 
     function query() {
+        notes=storageService.loadFromStorage(KEY)
+        if (!notes || !notes.length) {
+           notes =[
+            {
+             id: "n101",
+             type: "note-txt",
+             isPinned: true,
+             info: {
+                 title: 'this is it!',
+             txt: "Fullstack Me Baby!"
+             }
+            },
+            {
+             id: "n102",
+             type: "note-txt",
+             isPinned: true,
+             info: {
+                 title:'need to by something',
+             txt: "Shopping"
+             }
+            },
+            {
+             id: "n103",
+             type: "note-txt",
+             isPinned: true,
+             info: {
+                 title:'its relly urgent',
+             txt: "Go to to the dentist"
+             }
+            },
+            // {
+            //  id: "n104",
+            //  type: "note-img",
+            //  info: {
+            //  url: "http://some-img/me",
+            //  title: "Bobi and Me"
+            //  },
+            //  style: {
+            //  backgroundColor: "#00d"
+            //  }
+            // },
+            // {
+            //  id: "n105",
+            //  type: "note-todos",
+            //  info: {
+            //  label: "Get my stuff together",
+            //  todos: [
+            //  { txt: "Driving liscence", doneAt: null },
+            //  { txt: "Coding power", doneAt: 187111111 }
+            //  ]
+            //  }
+            // }
+            ];
+            _saveNotesToStorage
+        }
         return Promise.resolve(notes)
+        console.log(notes);
+
     }
 
-console.log(notes);
 
     function getNoteById(noteId) {
         var note = notes.find(function (note) {
@@ -74,7 +80,6 @@ console.log(notes);
         return Promise.resolve(note)
     }
 
-   
 
     function deleteNote(noteId) {
         var noteIdx = notes.findIndex(function (note) {
@@ -88,7 +93,7 @@ console.log(notes);
     function addNote(noteToEdit) {
         var note = _createNote(noteToEdit)
         notes.push(note)  
-          console.log(notes);
+          console.log(noteToEdit);
 
         _saveNotesToStorage();
         return Promise.resolve()
@@ -103,18 +108,17 @@ console.log(notes);
         notes[noteIdx].info.txt = noteToEdit.txt
         notes[noteIdx].info.title = noteToEdit.title
         _saveNotesToStorage();
-        return Promise.resolve()
+        return Promise.resolve(notes)
     }
     
 function _createNote(noteToEdit) {
  return {
-        id: utilService.makeId,
+        id: utilService.makeId(),
         type: "note-txt",
         isPinned: true,
         info: {
             title:noteToEdit.title,
        txt:noteToEdit.txt
-          
 }
 }
 }

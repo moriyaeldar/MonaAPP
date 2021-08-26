@@ -4,33 +4,42 @@ export class NoteAdd extends React.Component {
     txt: null,
   };
 
-  sendDataOfTitle(ev) {
-    this.setState({ title: ev.target.title });
+  onBtnAddNote(ev) {
+    // if (!this.state.title && !this.state.txt ) return;
+    ev.preventDefault();
+    this.setState({ ...this.state }, () => {
+      this.props.onAddNote(this.state);
+    });
+    console.log(this.state);
   }
-  sendDataOfTxt(ev) {
-    this.setState({ txt: ev.target.txt });
-  }
+
+  handleChange = (ev) => {
+    const field = ev.target.name;
+    const value = ev.target.value;
+    this.setState({ ...this.state, [field]: value });
+  };
+
+
   render() {
     return (
-      <form className="add flex" onSubmit={() => this.props.onAddNote(this.state)}>
+      <form className="add flex" onSubmit={(event) => this.onBtnAddNote(event)}>
         <input
-          onInput={(event) => this.sendDataOfTitle(event)}
           type="text"
-          name="title-note"
+          name="title"
           id="title-note"
           placeholder="title"
-          title={this.state.title}
+          onChange={this.handleChange}
         />
+
         <textarea
-          onInput={(event) => this.sendDataOfTxt(event)}
-          name="new-note"
+          name="txt"
           id="new-note"
           cols="30"
           rows="10"
-          placeholder="write a not..."
-          txt={this.state.txt}
+          placeholder="write a note..."
+          onChange={this.handleChange}
         ></textarea>
-        <button >add</button>
+        <button>add</button>
       </form>
     );
   }
