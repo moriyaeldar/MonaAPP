@@ -1,4 +1,6 @@
 // const { Link } = ReactRouterDOM;
+import { utilService } from "../../../services/util.service.js";
+
 export class NotePreview extends React.Component {
   state = {
     note: null,
@@ -6,6 +8,7 @@ export class NotePreview extends React.Component {
     noteToEdit: {
       title: null,
       txt: null,
+      URL: null,
     },
   };
 
@@ -15,17 +18,16 @@ export class NotePreview extends React.Component {
 
   onClickEditNote(ev) {
     ev.preventDefault();
-    this.setState({ ...this.state}, () => {
-      this.props.onEditNote(this.state.note,this.state.noteToEdit);
-
+    this.setState({ ...this.state }, () => {
+      this.props.onEditNote(this.state.note, this.state.noteToEdit);
     });
-    console.log(this.state.note,this.state.noteToEdit);
+    console.log(this.state.note, this.state.noteToEdit);
   }
 
   handleChange = (ev) => {
     const field = ev.target.name;
     const value = ev.target.value;
-    this.setState({noteToEdit: { ...this.state.noteToEdit, [field]: value }  });
+    this.setState({ noteToEdit: { ...this.state.noteToEdit, [field]: value } });
   };
 
   onClickDelete = () => {
@@ -39,12 +41,21 @@ export class NotePreview extends React.Component {
   render() {
     const { note } = this.props;
     return (
-      <article className="note-preview">
-        {note.info.pic&&
-        <img src={note.info.pic} />
-        }
-      
+      <article className="note-preview flex">
         <h3>{note.info.title}</h3>
+
+       <div>{note.info.URL && <img src={note.info.URL} />}</div> 
+
+       <div> {note.info.videoURL && <video src={note.info.videoURL}></video>}</div>
+
+        {note.info.todos && (
+          <div className="todos">
+            {note.info.todos.map((todo) => (
+              <li key={utilService.makeId()}>{todo.txt.split(",") }</li>
+            ))}
+          </div>
+        )}
+
         <h3>{note.info.txt}</h3>
         <h4>
           {this.state.isEdittedMode && (

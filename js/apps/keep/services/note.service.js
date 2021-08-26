@@ -29,7 +29,7 @@ var notes;
              type: "note-txt",
              isPinned: true,
              info: {
-                 title:'need to by something',
+                 title:'need to buy something',
              txt: "Shopping"
              }
             },
@@ -46,7 +46,7 @@ var notes;
              id: "n104",
              type: "note-img",
              info: {
-             pic: "https://picsum.photos/200/300",
+             URL: "https://picsum.photos/200/300",
              title: "Bobi and Me"
              },
              style: {
@@ -65,8 +65,8 @@ var notes;
              }
             }
             ];
-            _saveNotesToStorage
-        }
+            
+        }_saveNotesToStorage
         return Promise.resolve(notes)
         console.log(notes);
 
@@ -90,8 +90,8 @@ var notes;
         return Promise.resolve()
     }
     
-    function addNote(noteToEdit) {
-        var note = _createNote(noteToEdit)
+    function addNote(noteToEdit,type) {
+        var note = _createNote(noteToEdit,type)
         notes.push(note)  
           console.log(noteToEdit);
 
@@ -107,16 +107,18 @@ var notes;
          currNote.info.txt = noteToEdit.txt
         currNote.info.title = noteToEdit.title
         console.log(currNote);
-_saveNotesToStorage()
         return Promise.resolve(currNote)
      })
     
-   
+   _saveNotesToStorage()
+
      return Promise.resolve()
     }
     
 
-function _createNote(noteToEdit) {
+function _createNote(noteToEdit,type) {
+    console.log(noteToEdit,type);
+    if(type==="note-txt"){
  return {
         id: utilService.makeId(),
         type: "note-txt",
@@ -125,7 +127,41 @@ function _createNote(noteToEdit) {
             title:noteToEdit.title,
        txt:noteToEdit.txt
 }
+} }
+  else if (type==="note-img"){
+ return {
+        id: utilService.makeId(),
+        type: "note-img",
+        isPinned: true,
+        info: {
+            title:utilService.makeLorem(),
+       URL:noteToEdit.pic
 }
+} }
+   else if(type==="note-todos"){
+ return {
+        id: utilService.makeId(),
+        type: "note-todos",
+        isPinned: true,
+        info: {
+       title:utilService.makeLorem(),
+        todos:[{txt:noteToEdit.todo, doneAt: utilService.getRandomIntInclusive() },
+            {txt:noteToEdit.todo, doneAt: utilService.getRandomIntInclusive() }] 
+       
+}
+} }
+    else{
+ return {
+        id: utilService.makeId(),
+        type: "note-video",
+        isPinned: true,
+        info: {
+            title:utilService.makeLorem(),
+       videoURL:noteToEdit.video
+}
+} }
+
+
 }
 
     function _saveNotesToStorage() {

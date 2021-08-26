@@ -1,0 +1,5 @@
+.note-preview{
+    flex-direction: column;
+ margin: 10px;
+ background-color: rgb(216, 163, 174);
+}

@@ -1,12 +1,12 @@
-export class NotePic extends React.Component {
+export class NoteVideo extends React.Component {
   state = {
-    pic: null,
+    video: null,
   };
 
-  onBtnAddpic(ev) {
+  onBtnAddvideo(ev) {
     ev.preventDefault();
     this.setState({ ...this.state }, () => {
-      this.props.onAddNote(this.state, "note-img");
+      this.props.onAddNote(this.state, "note-video");
     });
     console.log(this.state);
   }
@@ -19,15 +19,15 @@ export class NotePic extends React.Component {
 
   render() {
     return (
-      <section className="note-choose-pic">
+      <section className="note-video">
         <input
           onChange={this.handleChange}
           type="url"
-          name="pic"
-          id="pic"
-          placeholder="Enter Picture URL..."
+          name="video"
+          id="video"
+          placeholder="Enter Video URL..."
         />
-        <button onClick={(event) => this.onBtnAddpic(event)} type="submit">
+        <button onClick={(event) => this.onBtnAddvideo(event)} type="submit">
           add
         </button>
       </section>
