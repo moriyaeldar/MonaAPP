@@ -28,8 +28,8 @@ export class KeepApp extends React.Component {
             this.loadNotes();
         })
     }
-    onEditNote=(note)=>{
-        noteService.updateNote(note).then(() => {
+    onEditNote=(note,noteToEdit)=>{
+        noteService.updateNote(note,noteToEdit).then(() => {
             this.loadNotes();
         })
     }

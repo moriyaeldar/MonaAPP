@@ -100,17 +100,22 @@ var notes;
     }
 
     
-    function updateNote(noteToEdit) {
-        console.log(noteToEdit);
-        var noteIdx = notes.findIndex(function (note) {
-            return note.id === noteToEdit.id;
-        })
-        notes[noteIdx].info.txt = noteToEdit.txt
-        notes[noteIdx].info.title = noteToEdit.title
-        _saveNotesToStorage();
-        return Promise.resolve(notes)
+    function updateNote(note,noteToEdit) {
+        console.log(note,noteToEdit);
+        let currNote =  getNoteById(note.note.id)   
+             .then((currNote)=> {
+         currNote.info.txt = noteToEdit.txt
+        currNote.info.title = noteToEdit.title
+        console.log(currNote);
+_saveNotesToStorage()
+        return Promise.resolve(currNote)
+     })
+    
+   
+     return Promise.resolve()
     }
     
+
 function _createNote(noteToEdit) {
  return {
         id: utilService.makeId(),

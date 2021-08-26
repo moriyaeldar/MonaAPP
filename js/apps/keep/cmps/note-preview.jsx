@@ -4,19 +4,29 @@ export class NotePreview extends React.Component {
   state = {
     note: null,
     isEdittedMode: false,
-    title: null,
-    txt: null
+    noteToEdit: {
+      title: null,
+      txt: null,
+    },
   };
 
   componentDidMount() {
     this.setState({ note: this.props });
   }
 
-  onClickEditNote = (ev) => {
-    this.setState({ title: ev.target.title })
-    this.setState({ txt: ev.target.txt })
+  onClickEditNote(ev) {
+    ev.preventDefault();
+    this.setState({ ...this.state}, () => {
+      this.props.onEditNote(this.state.note,this.state.noteToEdit);
 
-    this.props.onEditNote(this.state);
+    });
+    console.log(this.state.note,this.state.noteToEdit);
+  }
+
+  handleChange = (ev) => {
+    const field = ev.target.name;
+    const value = ev.target.value;
+    this.setState({noteToEdit: { ...this.state.noteToEdit, [field]: value }  });
   };
 
   onClickDelete = () => {
@@ -36,20 +46,23 @@ export class NotePreview extends React.Component {
         <h3>{note.info.txt}</h3>
         <h4>
           {this.state.isEdittedMode && (
-            <form className="note-edit" onSubmit={event => this.onClickEditNote(event)}>
+            <form
+              className="note-edit"
+              onSubmit={(event) => this.onClickEditNote(event)}
+            >
               <label htmlFor="title">title</label>
               <input
+                onChange={this.handleChange}
                 type="text"
                 name="title"
                 id="title"
-               title={this.state.title}
               />
               <label htmlFor="note">note</label>
               <input
+                onChange={this.handleChange}
                 type="text"
-                name="note"
+                name="txt"
                 id="note"
-                txt={this.state.txt}
               />
               <button>Save</button>
             </form>
