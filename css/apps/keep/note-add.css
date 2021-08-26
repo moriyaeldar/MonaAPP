@@ -1,3 +1,7 @@
 .add{
+  width: 50%;
+}
+
+.add-btn{
     flex-direction: column;
 }

@@ -7,6 +7,7 @@ export function NotesList({ notes, onDeleteNote, onAddNote, onEditNote }) {
     <div className="note-list">
       <section className="note-add">
         <NoteAdd onAddNote={onAddNote}/>
+
       </section>
       {notes.map((note) => (
         <NotePreview

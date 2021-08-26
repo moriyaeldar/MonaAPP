@@ -1,5 +1,4 @@
 // const { Link } = ReactRouterDOM;
-
 export class NotePreview extends React.Component {
   state = {
     note: null,
@@ -41,7 +40,10 @@ export class NotePreview extends React.Component {
     const { note } = this.props;
     return (
       <article className="note-preview">
-        {/* <img src={note.info.url} /> */}
+        {note.info.pic&&
+        <img src={note.info.pic} />
+        }
+      
         <h3>{note.info.title}</h3>
         <h3>{note.info.txt}</h3>
         <h4>

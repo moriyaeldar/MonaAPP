@@ -1,7 +1,10 @@
+import { NotePic } from "./note-pic.jsx";
+
 export class NoteAdd extends React.Component {
   state = {
     title: null,
     txt: null,
+    isPicChosen:false
   };
 
   onBtnAddNote(ev) {
@@ -19,10 +22,21 @@ export class NoteAdd extends React.Component {
     this.setState({ ...this.state, [field]: value });
   };
 
+  onUploudPic=()=>{
+    this.setState({ isPicChosen: true });
+
+  }
+
+  onBack=()=>{
+    this.setState({ isPicChosen: false});
+ 
+  }
 
   render() {
     return (
-      <form className="add flex" onSubmit={(event) => this.onBtnAddNote(event)}>
+        <section className="add flex">
+            {!this.state. isPicChosen&&
+      <form className="add txt" onSubmit={(event) => this.onBtnAddNote(event)}>
         <input
           type="text"
           name="title"
@@ -30,7 +44,6 @@ export class NoteAdd extends React.Component {
           placeholder="title"
           onChange={this.handleChange}
         />
-
         <textarea
           name="txt"
           id="new-note"
@@ -40,7 +53,15 @@ export class NoteAdd extends React.Component {
           onChange={this.handleChange}
         ></textarea>
         <button>add</button>
-      </form>
+      </form>}
+      {this.state.isPicChosen&&<NotePic/>}
+      <div className="add-btn flex">
+      <button onClick={this.onUploudPic}>📷</button>
+      <button>📹</button>
+      <button>📜</button>
+      <button onClick={this.onBack} >Back</button>
+      </div>
+      </section>
     );
   }
 }

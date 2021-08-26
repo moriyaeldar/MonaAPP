@@ -42,28 +42,28 @@ var notes;
              txt: "Go to to the dentist"
              }
             },
-            // {
-            //  id: "n104",
-            //  type: "note-img",
-            //  info: {
-            //  url: "http://some-img/me",
-            //  title: "Bobi and Me"
-            //  },
-            //  style: {
-            //  backgroundColor: "#00d"
-            //  }
-            // },
-            // {
-            //  id: "n105",
-            //  type: "note-todos",
-            //  info: {
-            //  label: "Get my stuff together",
-            //  todos: [
-            //  { txt: "Driving liscence", doneAt: null },
-            //  { txt: "Coding power", doneAt: 187111111 }
-            //  ]
-            //  }
-            // }
+            {
+             id: "n104",
+             type: "note-img",
+             info: {
+             pic: "https://picsum.photos/200/300",
+             title: "Bobi and Me"
+             },
+             style: {
+             backgroundColor: "#00d"
+             }
+            },
+            {
+             id: "n105",
+             type: "note-todos",
+             info: {
+             title: "Get my stuff together",
+             todos: [
+             { txt: "Driving liscence", doneAt: null },
+             { txt: "Coding power", doneAt: 187111111 }
+             ]
+             }
+            }
             ];
             _saveNotesToStorage
         }
