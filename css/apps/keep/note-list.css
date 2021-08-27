@@ -12,3 +12,16 @@ justify-content:space-between;
 .note-prev{
     justify-content: space-between;
 }
+
+.notes-pin{
+justify-self: start;
+max-height: 500px;
+}
+
+.notes-for-display{
+    flex-wrap: wrap;
+}
+
+.notes-no-pin{
+    margin-top: 500px;
+}

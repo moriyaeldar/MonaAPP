@@ -13,6 +13,7 @@
 @import "./parts/fonts.css";
 @import "./apps/keep/note-style.css";
 @import "./apps/keep/note-filter.css";
+@import "./apps/keep/main-layout.css";
 
 * {
     box-sizing: border-box;

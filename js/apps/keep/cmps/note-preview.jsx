@@ -45,13 +45,19 @@ export class NotePreview extends React.Component {
     this.ChangeNoteStyle(style)
   }
   onClickNotePin=()=>{
+this.props.onPinNote(this.props.note)
+
+  }
+
+  onClickNoteCopy=()=>{
+    this.props.onCopyNote(this.props.note)
 
   }
 
   render() {
     const { note } = this.props;
     return (
-      <article className="note-preview grid" style={this.state.style}
+      <article className="note-preview grid main-layout" style={this.state.style}
     >
         <p>{note.info.title}</p>
 
@@ -95,6 +101,7 @@ export class NotePreview extends React.Component {
           )}
         </h4>
         <button onClick={this.onClickNotePin}>📌</button>
+        <button onClick={this.onClickNoteCopy}>❐</button>
         <button onClick={this.onClickEdit}>🖋</button>
         <button onClick={this.onClickDelete}>✖</button>
 <NoteStyle onChangeNoteStyle={this.onChangeNoteStyle}/>
