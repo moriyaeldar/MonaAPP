@@ -1,0 +1,8 @@
+.email-preview {
+    border-top: 1px solid #8a8080;
+    background-color: #f7efef;
+}
+
+.email-preview .subject-mail{
+    font-weight: bold;
+}

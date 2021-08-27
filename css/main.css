@@ -18,6 +18,31 @@
     box-sizing: border-box;
 }
 
+@import "./apps/mail/email-preview.css";
+@import "./apps/mail/email-app.css";
+@import "./apps/mail/email-list.css";
+@import "./apps/mail/main-mail.css";
+/* flex helpers  */
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.center {
+    justify-content: center;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex .auto {
+    flex: auto;
+}
 
    
 body {

@@ -6,8 +6,12 @@ export class EmailFolderList extends React.Component {
     render() {
         return (
             <form className="mail-filter">
+                <div>
                 <button onClick={this.onChangeBox} value='Inbox'>Inbox</button>
+                </div>
+                <div>
                 <button onClick={this.onChangeBox} value='Sent'>Sent</button>
+                </div>
             </form>
         )
     }

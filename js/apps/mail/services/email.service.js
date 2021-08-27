@@ -28,13 +28,12 @@ function _loadMails() {
 }
 
 function query(criteria) {
-    debugger
     if (criteria) {
-        let {status, search, isRead} = criteria;
+        let { status, search, isRead } = criteria;
         var mailsToShow = gMails.filter((mail) => {
-            return mail.subject.includes(search)&&
-            mail.status===status&&
-            (mail.isRead===isRead||isRead===null)
+            return mail.subject.includes(search) &&
+                mail.status === status &&
+                (mail.isRead === isRead || isRead === null)
         });
         return Promise.resolve(mailsToShow);
     }
@@ -55,10 +54,11 @@ function getUnreadCount() {
     return Promise.resolve(unreadMails.length);
 }
 
-function addMail({ to, body }) {
-    const mail = _createMail(to, body);
+function addMail({ to, subject, body }) {
+    const mail = _createMail(to, subject, body);
     gMails.unshift(mail);
     _saveMailsToStorage()
+    console.log(gMails);
     return Promise.resolve();
 }
 
@@ -77,15 +77,17 @@ function mailRead(mail) {
     return Promise.resolve(gMails[idx]);
 }
 
-function _createMail(to = 'momo@momo.com', body = utilService.makeLorem(200), from = 'user@appsus.com') {
+function _createMail(to = 'momo@momo.com',subject='My new mail', body = utilService.makeLorem(200), from = 'user@appsus.com') {
     return {
         id: utilService.makeId(),
-        subject: 'My new mail',
+        subject: subject,
         body: body,
         isRead: false,
-        sentAt: 1551133930594,
+        sentAt: Date.now(),
         to: to,
-        from: from
+        from: from,
+        nick: 'user',
+        status: 'Sent'
     }
 }
 
