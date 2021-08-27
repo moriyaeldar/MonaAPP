@@ -4,11 +4,11 @@ import { NoteTodo } from "./note-todo.jsx";
 
 export class NoteAdd extends React.Component {
   state = {
-      note:{
-       title: null,
-    txt: null  
-      },
-    
+    note: {
+      title: null,
+      txt: null,
+    },
+
     isPicChosen: false,
     isVideoChosen: false,
     isTodoChosen: false,
@@ -17,16 +17,13 @@ export class NoteAdd extends React.Component {
   onBtnAddNote(ev) {
     // if (!this.state.title && !this.state.txt ) return;
     ev.preventDefault();
-    this.setState({ note: { ...this.state.note, [field]: value } }), () => {
-      this.props.onAddNote(this.state,"note-txt");}
-   
-    console.log(this.state);
+        this.props.onAddNote(this.state.note, "note-txt");
   }
 
   handleChange = (ev) => {
     const field = ev.target.name;
     const value = ev.target.value;
-    this.setState({ note: { ...this.state.note, [field]: value } })
+    this.setState({ note: { ...this.state.note, [field]: value } });
   };
 
   onUploudPic = () => {
@@ -54,36 +51,38 @@ export class NoteAdd extends React.Component {
           !this.state.isVideoChosen &&
           !this.state.isTodoChosen && (
             <form
-              className="add txt"
+              className="add-txt flex"
               onSubmit={(event) => this.onBtnAddNote(event)}
             >
               <input
+                onChange={this.handleChange}
                 type="text"
                 name="title"
                 id="title-note"
                 placeholder="title"
-                onChange={this.handleChange}
               />
               <textarea
+                onChange={this.handleChange}
                 name="txt"
                 id="new-note"
                 cols="30"
                 rows="10"
                 placeholder="write a note..."
-                onChange={this.handleChange}
               ></textarea>
-              <button>add</button>
+              <button className="add-btn">✅</button>
             </form>
           )}
         {this.state.isPicChosen && <NotePic onAddNote={this.props.onAddNote} />}
-        {this.state.isVideoChosen && <NoteVideo onAddNote={this.props.onAddNote} />}
-        {this.state.isTodoChosen && <NoteTodo onAddNote={this.props.onAddNote} />}
-        <div className="add-btn flex">
-          <button onClick={this.onUploudPic}>📷</button>
-          <button onClick={this.onUploudVideo}>📹</button>
-          <button onClick={this.onUploudTodo}>📜</button>
-          <button onClick={this.onBack}>Back</button>
-        </div>
+        {this.state.isVideoChosen && (
+          <NoteVideo onAddNote={this.props.onAddNote} />
+        )}
+        {this.state.isTodoChosen && (
+          <NoteTodo onAddNote={this.props.onAddNote} />
+        )}
+        <button onClick={this.onUploudPic}>📷</button>
+        <button onClick={this.onUploudVideo}>📹</button>
+        <button onClick={this.onUploudTodo}>☑</button>
+        <button onClick={this.onBack}>⬅Back</button>
       </section>
     );
   }

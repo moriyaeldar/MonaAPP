@@ -1,0 +1,30 @@
+select{
+    border-style: unset;
+}
+
+.note-style {
+   
+    bottom: 0px;
+    width: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .input-container {
+    background-color:white;
+    display: flex;
+    gap: 7px;
+    padding: 5px;
+    border-style:solid;
+    border-color: rgb(226, 224, 224);
+    border-width: 0.5px;
+  }
+  
+  .input-pick {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 50px;
+  }

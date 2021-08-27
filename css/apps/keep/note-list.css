@@ -1,4 +1,14 @@
 .note-list{
-    gap: 10px;
-    background-color: aqua; 
+   flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+   
+}
+
+.note-add{
+justify-content:space-between;
+}
+
+.note-prev{
+    justify-content: space-between;
 }

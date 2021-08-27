@@ -11,7 +11,7 @@ export const noteService ={
 const KEY = 'Notes'
 var notes;
 
-    function query() {
+    function query(filterBy) {
         notes=storageService.loadFromStorage(KEY)
         if (!notes || !notes.length) {
            notes =[
@@ -66,7 +66,13 @@ var notes;
             }
             ];
             
-        }_saveNotesToStorage
+        }
+        if(filterBy) {
+            let {title, type} = filterBy
+            const notesToShow = notes.filter(note => note.info.title.includes(title) && note.type.includes(type))
+            return Promise.resolve(notesToShow)
+        }
+        _saveNotesToStorage
         return Promise.resolve(notes)
         console.log(notes);
 
@@ -106,13 +112,13 @@ var notes;
              .then((currNote)=> {
          currNote.info.txt = noteToEdit.txt
         currNote.info.title = noteToEdit.title
-        console.log(currNote);
-        return Promise.resolve(currNote)
+        console.log(currNote);  
+         _saveNotesToStorage()
+        return Promise.resolve()  
+        
      })
-    
-   _saveNotesToStorage()
-
-     return Promise.resolve()
+   console.log(notes);
+ return Promise.resolve(notes) 
     }
     
 

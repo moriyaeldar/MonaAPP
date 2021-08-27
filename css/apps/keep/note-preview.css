@@ -1,5 +1,12 @@
 .note-preview{
-    flex-direction: column;
+    
  margin: 10px;
- background-color: rgb(216, 163, 174);
+ background-color: rgb(255, 255, 255);
+ border-style: solid;
+ border-color: rgba(197, 191, 191, 0.849);
+ border-radius: 10px;
+ border-width: 1px;
+ width: 200px;
 }
+
+

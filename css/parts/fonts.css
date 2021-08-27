@@ -1,0 +1,45 @@
+
+@font-face {
+    font-family: Nunito-bold;
+    src: url(/fonts/Nunito-Bold.ttf);
+}
+
+@font-face {
+    font-family: Nunito-regular;
+    src: url(/fonts/Nunito-Regular.ttf);
+}
+
+@font-face {
+    font-family: Impact;
+    src: url(/fonts/impact.ttf);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: VarelaRound;
+    src: url(/fonts/VarelaRound-Regular.ttf);
+}
+
+.impact {
+    font-family: Impact;
+}
+
+.roboto {
+    font-family: Roboto;
+}
+
+.varela {
+    font-family: VarelaRound;
+}
+
+.nunito {
+    font-family: Nunito-regular;
+}
+
+.nunito-bold {
+    font-family: Nunito-bold;
+}

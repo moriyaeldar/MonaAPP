@@ -7,8 +7,8 @@ export function NotesList({ notes, onDeleteNote, onAddNote, onEditNote }) {
     <div className="note-list flex">
       <section className="note-add">
         <NoteAdd onAddNote={onAddNote}/>
-
       </section>
+      <section className="note-prev">
       {notes.map((note) => (
         <NotePreview
           key={note.id}
@@ -17,6 +17,7 @@ export function NotesList({ notes, onDeleteNote, onAddNote, onEditNote }) {
           onEditNote={onEditNote}
         />
       ))}
+      </section>
     </div>
   );
 }

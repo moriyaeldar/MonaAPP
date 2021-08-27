@@ -1,9 +1,37 @@
 .add{
-  justify-content: center;
-  align-items: center;
-
+ align-items: center; 
+ justify-content: center;
+ border-style: solid;
+ border-radius: 20px;
+ border-color: rgba(197, 197, 197, 0.795);
+ border-width: 0.5px;
+ margin: 20px;
+ padding: 7px;
 }
+
+.add input{
+  border: unset;
+}
+.add-txt{
+  flex-direction: column;
+ margin: 10px;
+ height: 80px;
+ width: 400px;
+ border-style: unset;
+}
+
+.add-txt textarea{
+  border: unset;
+}
+
+.add-txt input{
+  border: unset;
+  border-radius: 20px;
+}
+
+
 
 .add-btn{
-    flex-direction: column;
+  font-size: 12px;
 }
+

@@ -1,0 +1,7 @@
+.note-filter input{
+    border-style: unset;
+    margin: 4px;
+    border-style: solid;
+border-radius: 20px;
+border-color: rgb(212, 212, 212);
+}

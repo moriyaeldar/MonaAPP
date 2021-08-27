@@ -8,8 +8,20 @@
 @import "./cmps/user-msg.css";
 @import "./cmps/app-header.css";
 @import "./apps/keep/note-add.css";
+@import "./apps/keep/keep-app.css";
+@import "./apps/keep/note-list.css";
+@import "./parts/fonts.css";
+@import "./apps/keep/note-style.css";
+@import "./apps/keep/note-filter.css";
 
+* {
+    box-sizing: border-box;
+}
+
+
+   
 body {
-    background-color: rgb(231, 229, 179);
+    background-color: white;
+     margin: 0;
     font-family:Arial, Helvetica, sans-serif;
 }

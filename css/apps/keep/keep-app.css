@@ -1,3 +1,10 @@
 .keep-app{
-    flex-direction: column;
+  justify-content: space-between;
+}
+
+.keep-app button{
+   width: 50px;
+   border-style: unset;
+   background-color: unset;
+   cursor: pointer;
 }
