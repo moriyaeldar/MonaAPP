@@ -1,10 +1,15 @@
 import { emailService } from "../services/email.service.js";
 export class EmailCompose extends React.Component {
     state = {
-        mail: {
-            to: '',
-            body: ''
-        }
+        mail: null
+    }
+
+    componentDidMount() {
+        this.loadNewMail();
+    }
+
+    loadNewMail = () => {
+        this.setState({ mail: { to: '',subject:'', body: '' } })
     }
 
     handleChange = (ev) => {
@@ -31,6 +36,15 @@ export class EmailCompose extends React.Component {
                         type="text"
                         onChange={this.handleChange}
                         placeholder="Enter mail address"
+                    />
+
+                    <label htmlFor="subj"></label>
+                    <input
+                        name="subject"
+                        id="subj"
+                        type="text"
+                        onChange={this.handleChange}
+                        placeholder="Mail subject"
                     />
 
                     <label htmlFor="mailCon"></label>

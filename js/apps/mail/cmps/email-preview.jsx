@@ -24,17 +24,26 @@ export class EmailPreview extends React.Component {
         this.props.onDeleteMail(this.state.mail)
     }
 
+    getDate = () => {
+        const date=new Date(this.state.mail.sentAt)
+        return date.toDateString()
+    }
+
+    getMailAddress = () => {
+        if (this.state.mail.status === 'Inbox')return this.state.mail.nick
+        else return 'to:'+this.state.mail.to
+    }
 
     render() {
         const mail = this.state.mail;
         if (!mail) return <p>Loading mail...</p>
         return (
-            <Link to={`/mail/${mail.id}`} onClick={this.onMailRead}><article className="email-preview">
-                <div>to: {mail.to}</div>
-                <div>{this.isMailRead()}</div>
-                <div>subject:{mail.subject}</div>
-                <div>body: {mail.body}</div>
-                <button onClick={this.onClickDelete}>Delete</button>
+            <Link to={`/mail/${mail.id}`} onClick={this.onMailRead}><article className="email-preview flex space-between">
+                <div>{this.getMailAddress()}</div>
+                {/* <div>{this.isMailRead()}</div> */}
+                <div className="subject-mail">{mail.subject}</div>
+                <div>{this.getDate()}</div>
+                <button onClick={this.onClickDelete}>🗑</button>
             </article></Link>
         )
     }

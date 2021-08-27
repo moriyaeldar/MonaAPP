@@ -1,4 +1,6 @@
+const { Link } = ReactRouterDOM
 import { emailService } from "../services/email.service.js"
+import { EmailCompose } from "../cmps/email-compose.jsx";
 import { EmailFilter } from "../cmps/email-filter.jsx";
 import { EmailFolderList } from "../cmps/email-folder-list.jsx";
 import { EmailList } from "../cmps/email-list.jsx";
@@ -46,13 +48,21 @@ export class MailApp extends React.Component {
 
     render() {
         const { mails } = this.state;
+        console.log(this.state.mails);
         return (
-            <section className="emailApp">
+            <section className="email-app">
                 <h1>welcome to email app</h1>
                 <h3>Count of mail unread:{this.state.unreadCount}</h3>
-                <EmailFolderList onSetCriteria={this.onSetCriteria} />
-                <EmailFilter onSetCriteria={this.onSetCriteria} />
-                <EmailList mails={mails} onDeleteMail={this.onDeleteMail} />
+                <div className="main-mail flex">
+                    <div className="side flex">
+                        <Link to={'/mail/mail-compose'}><button >Compose new mail</button></Link>
+                        <EmailFolderList onSetCriteria={this.onSetCriteria} />
+                    </div>
+                    <div className="mails-container flex auto">
+                        <EmailFilter onSetCriteria={this.onSetCriteria} />
+                        <EmailList mails={mails} onDeleteMail={this.onDeleteMail} />
+                    </div>
+                </div>
             </section>
         );
     }

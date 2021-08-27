@@ -1,0 +1,7 @@
+.main-mail .side {
+    flex-direction: column;
+}
+
+.main-mail .mails-container{
+    flex-direction: column;
+}
