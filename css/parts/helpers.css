@@ -5,3 +5,8 @@
 .grid{
     display: grid;
 }
+
+.main-layout{
+    background-color: white
+    ;
+}

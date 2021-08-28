@@ -28,6 +28,18 @@ export class KeepApp extends React.Component {
     });
   };
 
+  onPinNote = (note) => {
+    noteService.pinNote(note).then(() => {
+      this.loadNotes();
+    });
+  };
+
+  onCopyNote = (note) => {
+    noteService.copyNote(note).then(() => {
+      this.loadNotes();
+    });
+  };
+
   onAddNote = (note, type) => {
     console.log(note);
     noteService.addNote(note, type).then(() => {
@@ -49,13 +61,15 @@ export class KeepApp extends React.Component {
     return !notes || !notes.length ? (
       <p>loading...</p>
     ) : (
-      <section className="keep-app flex roboto">
+      <section className="keep-app flex roboto main-layout">
         <NoteFilter onSetFilter={this.onSetFilter} />
         <NotesList
           notes={notes}
           onDeleteNote={this.onDeleteNote}
           onAddNote={this.onAddNote}
           onEditNote={this.onEditNote}
+          onPinNote={this.onPinNote}
+          onCopyNote={this.onCopyNote}
         />
       </section>
     );

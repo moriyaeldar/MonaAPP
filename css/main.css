@@ -20,6 +20,7 @@
 @import "./apps/mail/email-folder-list.css";
 @import "./apps/mail/email-filter.css";
 @import "./apps/mail/main-mail.css";
+@import "./apps/keep/main-layout.css";
 
 * {
     box-sizing: border-box;

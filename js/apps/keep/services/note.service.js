@@ -5,7 +5,9 @@ export const noteService ={
     getNoteById,
     deleteNote,
     updateNote,
-    addNote 
+    addNote,
+    pinNote,
+    copyNote 
 }
 
 const KEY = 'Notes'
@@ -18,7 +20,7 @@ var notes;
             {
              id: "n101",
              type: "note-txt",
-             isPinned: true,
+             isPinned: false,
              info: {
                  title: 'this is it!',
              txt: "Fullstack Me Baby!"
@@ -27,7 +29,7 @@ var notes;
             {
              id: "n102",
              type: "note-txt",
-             isPinned: true,
+             isPinned: false,
              info: {
                  title:'need to buy something',
              txt: "Shopping"
@@ -36,7 +38,7 @@ var notes;
             {
              id: "n103",
              type: "note-txt",
-             isPinned: true,
+             isPinned: false,
              info: {
                  title:'its relly urgent',
              txt: "Go to to the dentist"
@@ -45,6 +47,7 @@ var notes;
             {
              id: "n104",
              type: "note-img",
+             isPinned: false,
              info: {
              URL: "https://picsum.photos/200/300",
              title: "Bobi and Me"
@@ -56,6 +59,7 @@ var notes;
             {
              id: "n105",
              type: "note-todos",
+             isPinned: false,
              info: {
              title: "Get my stuff together",
              todos: [
@@ -73,6 +77,7 @@ var notes;
             return Promise.resolve(notesToShow)
         }
         _saveNotesToStorage
+    console.log(notes);
         return Promise.resolve(notes)
         console.log(notes);
 
@@ -86,6 +91,32 @@ var notes;
         return Promise.resolve(note)
     }
 
+
+    function pinNote(note) {
+       let currNote=getNoteById(note.id)
+       .then((currNote)=> {
+        currNote.isPinned=true
+        _saveNotesToStorage()
+       return Promise.resolve()  
+       
+    })
+       
+        _saveNotesToStorage();       
+        return Promise.resolve()
+    }
+
+    function copyNote(note) {
+       let currNote=getNoteById(note.id)
+       .then((currNote)=> {
+        notes.push(currNote)  
+        _saveNotesToStorage()
+       return Promise.resolve()  
+       
+    })
+       
+        _saveNotesToStorage();       
+        return Promise.resolve()
+    }
 
     function deleteNote(noteId) {
         var noteIdx = notes.findIndex(function (note) {
@@ -128,7 +159,7 @@ function _createNote(noteToEdit,type) {
  return {
         id: utilService.makeId(),
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
             title:noteToEdit.title,
        txt:noteToEdit.txt
@@ -138,7 +169,7 @@ function _createNote(noteToEdit,type) {
  return {
         id: utilService.makeId(),
         type: "note-img",
-        isPinned: true,
+        isPinned: false,
         info: {
             title:utilService.makeLorem(),
        URL:noteToEdit.pic
@@ -148,7 +179,7 @@ function _createNote(noteToEdit,type) {
  return {
         id: utilService.makeId(),
         type: "note-todos",
-        isPinned: true,
+        isPinned: false,
         info: {
        title:utilService.makeLorem(),
         todos:[{txt:noteToEdit.todo, doneAt: utilService.getRandomIntInclusive() },
