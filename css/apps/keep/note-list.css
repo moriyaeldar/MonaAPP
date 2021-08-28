@@ -14,14 +14,20 @@ justify-content:space-between;
 }
 
 .notes-pin{
-justify-self: start;
-max-height: 500px;
+Break-inside:avoid-column
 }
 
 .notes-for-display{
-    flex-wrap: wrap;
+   grid-column:3 250px;
 }
 
 .notes-no-pin{
     margin-top: 500px;
+    Break-inside:avoid-column
+}
+
+
+.other-comment{
+    margin-top: 500px;
+    
 }

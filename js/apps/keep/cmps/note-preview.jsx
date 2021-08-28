@@ -1,5 +1,6 @@
 // const { Link } = ReactRouterDOM;
 import { utilService } from "../../../services/util.service.js";
+import { noteService } from "../services/note.service.js";
 import { NoteStyle } from "./note-style.jsx";
 export class NotePreview extends React.Component {
   state = {
@@ -10,11 +11,11 @@ export class NotePreview extends React.Component {
       txt: null,
       URL: null,
     },
-    style:null
+    style: null,
   };
 
   componentDidMount() {
-    this.setState({ note: this.props });
+    this.setState({ note: this.props.note });
   }
 
   onClickEditNote(ev) {
@@ -23,6 +24,7 @@ export class NotePreview extends React.Component {
       this.props.onEditNote(this.state.note, this.state.noteToEdit);
     });
     console.log(this.state.note, this.state.noteToEdit);
+    this.setState({ isEdittedMode: false });
   }
 
   handleChange = (ev) => {
@@ -32,43 +34,52 @@ export class NotePreview extends React.Component {
   };
 
   onClickDelete = () => {
-    this.props.onDeleteNote(this.state);
+    this.props.onDeleteNote(this.props.note);
   };
 
   onClickEdit = () => {
     this.setState({ isEdittedMode: true });
   };
-  ChangeNoteStyle(style){
+  ChangeNoteStyle(style) {
     this.setState({ style: style });
-  }
-  onChangeNoteStyle=(style)=>{
-    this.ChangeNoteStyle(style)
-  }
-  onClickNotePin=()=>{
-this.props.onPinNote(this.props.note)
+    this.props.note.style=style
+    console.log((this.props.note));
+    this.props.onChangeStyleNote(this.props.note,style)
 
   }
+  onChangeNoteStyle = (style) => {
+    this.ChangeNoteStyle(style);
+  };
+  onClickNotePin = () => {
+    this.props.onPinNote(this.props.note);
+  };
 
-  onClickNoteCopy=()=>{
-    this.props.onCopyNote(this.props.note)
-
-  }
+  onClickNoteCopy = () => {
+    this.props.onCopyNote(this.props.note);
+  };
 
   render() {
     const { note } = this.props;
     return (
-      <article className="note-preview grid main-layout" style={this.state.style}
-    >
+      <article
+        className="note-preview grid main-layout"
+        style={this.props.note.style}
+      >
+        <button onClick={this.onClickNotePin}>📌</button>
+
         <p>{note.info.title}</p>
 
-       <div>{note.info.URL && <img src={note.info.URL} />}</div> 
+        <div>{note.info.URL && <img src={note.info.URL} />}</div>
 
-       <div> {note.info.videoURL && <video src={note.info.videoURL}></video>}</div>
+        <div>
+          {" "}
+          {note.info.videoURL && <video src={note.info.videoURL}></video>}
+        </div>
 
         {note.info.todos && (
           <div className="todos">
             {note.info.todos.map((todo) => (
-              <li key={utilService.makeId()}>{todo.txt.split(",") }</li>
+              <li key={utilService.makeId()}>{todo}</li>
             ))}
           </div>
         )}
@@ -100,11 +111,10 @@ this.props.onPinNote(this.props.note)
             </form>
           )}
         </h4>
-        <button onClick={this.onClickNotePin}>📌</button>
         <button onClick={this.onClickNoteCopy}>❐</button>
         <button onClick={this.onClickEdit}>🖋</button>
         <button onClick={this.onClickDelete}>✖</button>
-<NoteStyle onChangeNoteStyle={this.onChangeNoteStyle}/>
+        <NoteStyle onChangeNoteStyle={this.onChangeNoteStyle} />
       </article>
     );
   }

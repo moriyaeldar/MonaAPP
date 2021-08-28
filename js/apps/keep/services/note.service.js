@@ -7,7 +7,8 @@ export const noteService ={
     updateNote,
     addNote,
     pinNote,
-    copyNote 
+    copyNote,
+    changeStyleNote 
 }
 
 const KEY = 'Notes'
@@ -24,7 +25,10 @@ var notes;
              info: {
                  title: 'this is it!',
              txt: "Fullstack Me Baby!"
-             }
+             },
+             style: {
+                backgroundColor: "white"
+                }
             },
             {
              id: "n102",
@@ -33,7 +37,10 @@ var notes;
              info: {
                  title:'need to buy something',
              txt: "Shopping"
-             }
+             },
+             style: {
+                backgroundColor:"white"
+                }
             },
             {
              id: "n103",
@@ -42,7 +49,10 @@ var notes;
              info: {
                  title:'its relly urgent',
              txt: "Go to to the dentist"
-             }
+             },
+             style: {
+                backgroundColor: "white"
+                }
             },
             {
              id: "n104",
@@ -53,7 +63,7 @@ var notes;
              title: "Bobi and Me"
              },
              style: {
-             backgroundColor: "#00d"
+             backgroundColor:"white"
              }
             },
             {
@@ -62,11 +72,12 @@ var notes;
              isPinned: false,
              info: {
              title: "Get my stuff together",
-             todos: [
-             { txt: "Driving liscence", doneAt: null },
-             { txt: "Coding power", doneAt: 187111111 }
+             todos: ["Driving liscence","Coding power"
              ]
-             }
+             },
+             style: {
+                backgroundColor: "white"
+                }
             }
             ];
             
@@ -117,6 +128,18 @@ var notes;
         _saveNotesToStorage();       
         return Promise.resolve()
     }
+    function changeStyleNote(note,style) {
+       let currNote=getNoteById(note.id)
+       .then((currNote)=> {
+        currNote.style=style 
+        _saveNotesToStorage()
+       return Promise.resolve()  
+       
+    })
+       
+        _saveNotesToStorage();       
+        return Promise.resolve()
+    }
 
     function deleteNote(noteId) {
         var noteIdx = notes.findIndex(function (note) {
@@ -126,12 +149,13 @@ var notes;
         _saveNotesToStorage();
         return Promise.resolve()
     }
+
     
     function addNote(noteToEdit,type) {
         var note = _createNote(noteToEdit,type)
         notes.push(note)  
           console.log(noteToEdit);
-
+console.log(note);
         _saveNotesToStorage();
         return Promise.resolve()
     }
@@ -163,7 +187,10 @@ function _createNote(noteToEdit,type) {
         info: {
             title:noteToEdit.title,
        txt:noteToEdit.txt
-}
+},
+style: {
+   backgroundColor: "white"
+   }
 } }
   else if (type==="note-img"){
  return {
@@ -173,21 +200,26 @@ function _createNote(noteToEdit,type) {
         info: {
             title:utilService.makeLorem(),
        URL:noteToEdit.pic
-}
+},
+style: {
+   backgroundColor: "white"
+   }
 } }
    else if(type==="note-todos"){
+    
  return {
         id: utilService.makeId(),
         type: "note-todos",
         isPinned: false,
         info: {
        title:utilService.makeLorem(),
-        todos:[{txt:noteToEdit.todo, doneAt: utilService.getRandomIntInclusive() },
-            {txt:noteToEdit.todo, doneAt: utilService.getRandomIntInclusive() }] 
-       
-}
-} }
-    else{
+         todos:noteToEdit.todo.split(",")
+        },
+        style: {
+           backgroundColor: "white"
+           }
+ 
+   } }else{
  return {
         id: utilService.makeId(),
         type: "note-video",
@@ -195,7 +227,10 @@ function _createNote(noteToEdit,type) {
         info: {
             title:utilService.makeLorem(),
        videoURL:noteToEdit.video
-}
+},
+style: {
+   backgroundColor: "white"
+   }
 } }
 
 
