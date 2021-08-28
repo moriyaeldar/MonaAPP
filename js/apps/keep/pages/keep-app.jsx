@@ -1,6 +1,7 @@
 import { noteService } from "../services/note.service.js";
 import { NotesList } from "../cmps/note-list.jsx";
 import { NoteFilter } from "../cmps/note-filter.jsx";
+import { eventBusService } from "../../../services/event-bus-service.js";
 export class KeepApp extends React.Component {
   state = {
     notes: [],

@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    debounce
+    debounce,
+    getWords
 }
 
 function makeId(length = 6) {
@@ -14,6 +15,11 @@ function makeId(length = 6) {
     }
 
     return txt;
+}
+
+function getWords(string, idx1, idx2) {
+    let words = string.split(' ');
+    return words[idx1] + ' ' + words[idx2]
 }
 
 function makeLorem(size) {
@@ -34,14 +40,14 @@ function getRandomIntInclusive(min, max) {
 
 function debounce(func, wait) {
     let timeout;
-  
+
     return function (...args) {
-      const later = () => {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+
         clearTimeout(timeout);
-        func(...args);
-      };
-  
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
+        timeout = setTimeout(later, wait);
     };
-  };
+};

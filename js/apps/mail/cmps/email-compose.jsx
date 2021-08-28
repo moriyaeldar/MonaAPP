@@ -3,13 +3,15 @@ export class EmailCompose extends React.Component {
     state = {
         mail: null
     }
+    removeEventBus;
 
     componentDidMount() {
         this.loadNewMail();
+        console.log(this.state.mail);
     }
 
     loadNewMail = () => {
-        this.setState({ mail: { to: '',subject:'', body: '' } })
+        this.setState({ mail: { to: '', subject: '', body: '' } })
     }
 
     handleChange = (ev) => {
@@ -21,39 +23,42 @@ export class EmailCompose extends React.Component {
     onAdd = (ev) => {
         ev.preventDefault();
         emailService.addMail(this.state.mail)
-            .then(() => this.props.history.push('/mail'))
+            .then(() => this.props.onCloseModal())
     }
 
     render() {
         return (
-            <section className="email-compose" onSubmit={this.onAdd}>
-                <h4>Mail compose</h4>
+            <section className="email-compose flex" onSubmit={this.onAdd}>
+                <h4 className="compose-head">New message
+                    <button className="close-modal-btn" onClick={this.props.onCloseModal}>✖</button></h4>
+
                 <form>
-                    <label htmlFor="Des">to:</label>
                     <input
+                        className="to-input"
                         name="to"
                         id="des"
                         type="text"
                         onChange={this.handleChange}
-                        placeholder="Enter mail address"
+                        placeholder="To"
                     />
 
                     <label htmlFor="subj"></label>
                     <input
+                        className="subject-input"
                         name="subject"
                         id="subj"
                         type="text"
                         onChange={this.handleChange}
-                        placeholder="Mail subject"
+                        placeholder="Subject"
                     />
 
                     <label htmlFor="mailCon"></label>
                     <input
+                        className="body-input"
                         name="body"
                         id="mailCon"
                         type="text"
                         onChange={this.handleChange}
-                        placeholder="Say what you want to say..."
                     />
                     <button>send</button>
                 </form>

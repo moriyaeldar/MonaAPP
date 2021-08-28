@@ -13,16 +13,20 @@
 @import "./parts/fonts.css";
 @import "./apps/keep/note-style.css";
 @import "./apps/keep/note-filter.css";
+@import "./apps/mail/email-compose.css";
+@import "./apps/mail/email-preview.css";
+@import "./apps/mail/email-app.css";
+@import "./apps/mail/email-list.css";
+@import "./apps/mail/email-folder-list.css";
+@import "./apps/mail/email-filter.css";
+@import "./apps/mail/main-mail.css";
 @import "./apps/keep/main-layout.css";
 
 * {
     box-sizing: border-box;
 }
 
-@import "./apps/mail/email-preview.css";
-@import "./apps/mail/email-app.css";
-@import "./apps/mail/email-list.css";
-@import "./apps/mail/main-mail.css";
+
 /* flex helpers  */
 
 .flex {
@@ -48,6 +52,7 @@
    
 body {
     background-color: white;
+    height: 100vh;
      margin: 0;
     font-family:Arial, Helvetica, sans-serif;
 }

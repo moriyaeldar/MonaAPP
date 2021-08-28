@@ -1,0 +1,8 @@
+.mail-filter {
+    margin-inline-start: 10px;
+}
+
+.mail-filter .search-input {
+    font-size: 18px;
+    margin-bottom: 10px;
+}

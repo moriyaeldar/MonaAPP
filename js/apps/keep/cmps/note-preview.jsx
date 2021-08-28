@@ -1,7 +1,9 @@
 // const { Link } = ReactRouterDOM;
 import { utilService } from "../../../services/util.service.js";
 import { noteService } from "../services/note.service.js";
+import { exportService } from "../../../services/export.service.js";
 import { NoteStyle } from "./note-style.jsx";
+import { emailService } from "../../mail/services/email.service.js";
 export class NotePreview extends React.Component {
   state = {
     note: null,
@@ -11,7 +13,7 @@ export class NotePreview extends React.Component {
       txt: null,
       URL: null,
     },
-    style: null,
+    style: null
   };
 
   componentDidMount() {
@@ -57,6 +59,11 @@ export class NotePreview extends React.Component {
   onClickNoteCopy = () => {
     this.props.onCopyNote(this.props.note);
   };
+
+  onExportToMail = () => {
+    console.log('note to export:', this.state.note.note);
+    exportService.noteToMail(this.state.note.note).then(mail => emailService.addMail(mail, "noteExport"));
+  }
 
   render() {
     const { note } = this.props;
@@ -114,6 +121,7 @@ export class NotePreview extends React.Component {
         <button onClick={this.onClickNoteCopy}>❐</button>
         <button onClick={this.onClickEdit}>🖋</button>
         <button onClick={this.onClickDelete}>✖</button>
+        <button onClick={this.onExportToMail}>➱</button>
         <NoteStyle onChangeNoteStyle={this.onChangeNoteStyle} />
       </article>
     );

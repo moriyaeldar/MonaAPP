@@ -1,7 +1,7 @@
 const { Link } = ReactRouterDOM;
 
 import { noteService } from "../services/note.service.js";
-
+import { eventBusService } from "../../../services/event-bus-service.js";
 export class noteDetails extends React.Component{
   state={
       note:null

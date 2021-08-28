@@ -1,29 +1,53 @@
 export class EmailFilter extends React.Component {
 
+    state = {
+        isOpenRead: false
+    }
+
+    onToggleOpenRead = (ev) => {
+        ev.preventDefault();
+        if (this.state.isOpenRead) {
+            this.setState({ isOpenRead: false })
+            this.props.onSetCriteria('isRead', null)
+        } else {
+            this.setState({ isOpenRead: true })
+            this.props.onSetCriteria('isRead', false)
+        }
+    }
+
+    onToggleRead = (ev) => {
+        ev.preventDefault();
+        if (ev.target.innerHTML==='📖') {
+            ev.target.value = false;
+            ev.target.innerHTML = '📘';
+            this.props.onSetCriteria('isRead', false)
+
+        } else {
+            ev.target.value = true;
+            ev.target.innerHTML = '📖';
+            this.props.onSetCriteria('isRead', true)
+        }
+    }
+
     handlechange = (ev) => {
-        const field = ev.target.name
-        let value = ev.target.value
-        if (value === 'true') value = true
-        else if (value === 'false') value = false
+        const field = ev.target.name;
+        let value = ev.target.value;
         this.props.onSetCriteria(field, value)
 
     }
     render() {
         return (
             <form className="mail-filter">
-                <label htmlFor="bySearch">Search</label>
                 <input
+                    className="search-input"
                     name="search"
                     id="bySearch"
-                    type="text"
-                    placeholder="Mail search"
+                    type="search"
+                    placeholder="🔎 Search mail"
                     onChange={this.handlechange}
                 />
-                <label htmlFor="byRead">Search</label>
-                <select name="isRead" onChange={this.handlechange}>
-                    <option value="true">Read</option>
-                    <option value="false">Unread</option>
-                </select>
+                <button className="isReadOpen-btn" onClick={this.onToggleOpenRead}>Read?</button>
+                {this.state.isOpenRead && <button className="toggle-read" value={false} onClick={this.onToggleRead}>📘</button>}
             </form>
         )
     }

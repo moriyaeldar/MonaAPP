@@ -151,8 +151,13 @@ var notes;
     }
 
     
-    function addNote(noteToEdit,type) {
-        var note = _createNote(noteToEdit,type)
+    function addNote(noteToEdit,type,source="note") {
+        if(source === "mailExport"){
+            var note=noteToEdit
+        }else{
+            var note = _createNote(noteToEdit,type) 
+        }
+    
         notes.push(note)  
           console.log(noteToEdit);
 console.log(note);

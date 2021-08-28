@@ -1,0 +1,35 @@
+.email-compose {
+    background-color: #ffff;
+    width: 350px;
+    height: 350px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border: 1px solid rgb(179, 174, 174);
+    flex-direction: column;
+}
+
+.email-compose .compose-head {
+    background-color: rgb(41, 39, 39);
+    color: #ffff;
+    margin: 0;
+    line-height: 25px;
+}
+
+.email-compose .compose-head .close-modal-btn {
+    position: fixed;
+    right: 0;
+    background-color: rgb(41, 39, 39);
+    color: #ffff;
+    border: 0;
+    cursor: pointer;
+}
+
+.email-compose input {
+    width: 100%;
+}
+
+.email-compose .body-input {
+    text-align: start;
+    height: 230px;
+}

@@ -1,0 +1,18 @@
+.folder-list .folder {
+    border: 0;
+    background-color: #f7efef;
+    padding: 0;
+    font-size: 18px;
+    width:90%;
+    line-height: 30px;
+}
+
+
+
+.folder-list .folder.active{
+    background-color:#f8dede;
+}
+
+.folder-list .folder:hover{
+    background-color: rgb(173, 173, 173);
+}
