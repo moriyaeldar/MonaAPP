@@ -1,7 +1,7 @@
 const { Link } = ReactRouterDOM;
 
 import { AddReview } from "../cmps/AddReview.jsx";
-import { booksService } from "../services/Bookservice.js";
+import { booksService } from "../services/book.service.js";
 
 export class BookDetails extends React.Component{
   state={

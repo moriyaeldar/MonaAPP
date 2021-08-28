@@ -1,4 +1,4 @@
-import { booksService } from "../services/Bookservice.js";
+import { booksService } from "../services/book.service.js";
 
 export class AddReview extends React.Component {
     state = {

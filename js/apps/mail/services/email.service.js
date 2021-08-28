@@ -17,6 +17,7 @@ const loggedinUser = {
 
 const KEY = 'mailDB';
 var gMails;
+var gSortBy = 'none';
 _loadMails();
 
 function _loadMails() {
@@ -27,10 +28,29 @@ function _loadMails() {
     }
 }
 
-function query(criteria) {
+function sortByFunc(mail1, mail2) {
+    switch (gSortBy) {
+        case 'title':
+            return mail1.subject.toLocalCompare(mail2.subject);
+        case 'date':
+            return mail1.sentAt - mail2.sentAt;
+        default:
+            return 0;
+    }
+
+}
+
+function query(criteria, sortBy) {
+    if (sortBy) {
+        gSortBy = sortBy.feild;
+        var mailsToShow = gMails.sort(sortByFunc)
+        if (sortBy.order === 'Z' || sortBy.order === 'old') {
+            mailsToShow = mailsToShow.reverse()
+        }
+    }
     if (criteria) {
         let { status, search, isRead } = criteria;
-        var mailsToShow = gMails.filter((mail) => {
+        mailsToShow = gMails.filter((mail) => {
             return mail.subject.includes(search) &&
                 mail.status === status &&
                 (mail.isRead === isRead || isRead === null)
@@ -39,6 +59,8 @@ function query(criteria) {
     }
     return Promise.resolve(gMails);
 }
+
+
 
 function getMailById(id) {
     var mail = gMails.find(mail => {
@@ -77,7 +99,7 @@ function mailRead(mail) {
     return Promise.resolve(gMails[idx]);
 }
 
-function _createMail(to = 'momo@momo.com',subject='My new mail', body = utilService.makeLorem(200), from = 'user@appsus.com') {
+function _createMail(to = 'momo@momo.com', subject = '(no subject)', body = utilService.makeLorem(200), from = 'user@appsus.com') {
     return {
         id: utilService.makeId(),
         subject: subject,

@@ -5,10 +5,10 @@ export const Mails = [
         "subject": 'I miss you!',
         "body": "Dear friend! I was really pleased hearing from you... I hope you are doing well, How's your mom? anyway canwt wait to meet you, how's next week? let have dinner! your loyal friend Muki",
         "isRead": false,
-        "sentAt":Date.now(),
+        "sentAt": Date.now(),
         "to": "momo@momo.com",
         "from": "user@appsus.com",
-        "nick": "user",
+        "nick": "Momo",
         "status": "Sent"
     },
     {
@@ -19,7 +19,7 @@ export const Mails = [
         "sentAt": Date.now(),
         "to": "lidyaArsgo@bizbiz.com",
         "from": "user@appsus.com",
-        "nick": "user",
+        "nick": "Lidya Arsgo",
         "status": "Sent"
     },
 
@@ -31,7 +31,7 @@ export const Mails = [
         "sentAt": Date.now(),
         "to": "user@appsus.com",
         "from": "user@appsus.com",
-        "nick": "user",
+        "nick": "me",
         "status": "Sent"
     },
 
@@ -43,7 +43,7 @@ export const Mails = [
         "sentAt": Date.now(),
         "to": "customerService@greatShoes.com",
         "from": "user@appsus.com",
-        "nick": "user",
+        "nick": "greatShoes",
         "status": "Sent"
     },
 
@@ -55,7 +55,7 @@ export const Mails = [
         "sentAt": Date.now(),
         "to": "wifu@appsus.com",
         "from": "user@appsus.com",
-        "nick": "user",
+        "nick": "Wifu",
         "status": "Sent"
     },
     {

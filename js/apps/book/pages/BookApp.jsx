@@ -1,10 +1,10 @@
-import { booksService } from "../services/Bookservice.js";
+import { booksService } from "../services/book.service.js";
 import { BookFilter } from "../cmps/BookFilter.jsx";
 import { BookList } from "../cmps/BookList.jsx";
 import { GoogleBooks } from "../cmps/GoogleBooks.jsx";
 import { GoogleBooksList } from "../cmps/GoogleBooksList.jsx";
 import { googleService } from "../services/google.service.js";
-import { eventBusService } from '../services/event-bus-service.js';
+import { eventBusService } from '../../../services/event-bus-service.js';
 
 
 export class BookApp extends React.Component {

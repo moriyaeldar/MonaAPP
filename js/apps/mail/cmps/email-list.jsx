@@ -1,6 +1,7 @@
 
 import { EmailPreview } from "./email-preview.jsx"
 export function EmailList({ mails, onDeleteMail }) {
+    console.log(mails);
     if (!mails) {
         return <h4>Loading...</h4>
     }

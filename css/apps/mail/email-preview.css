@@ -1,8 +1,59 @@
 .email-preview {
     border-top: 1px solid #8a8080;
     background-color: #f7efef;
+    min-height: 40px;
+    align-items: center;
+    text-align: left;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 200px 1fr 40px;
+    grid-template-areas: "contact subject date";
 }
 
-.email-preview .subject-mail{
+.email-preview:hover {
+    border: 1px solid #8a8080;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+.email-preview .date {
+    display: block;
+}
+
+.email-preview .delete-btn {
+    display: none;
+    border: 0;
+    background-color: inherit;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: ivory;
+    border-radius: 50%;
+}
+
+.email-preview:hover .date {
+    display: none;
+}
+
+.email-preview:hover .delete-btn {
+    display: block;
+}
+
+.email-preview .contact {
+    grid-area: contact;
+}
+
+.email-preview .subject {
     font-weight: bold;
+    grid-area: subject;
+}
+
+.email-preview .date {
+    font-weight: bold;
+    grid-area: date;
+}
+
+.email-preview.read {
+    background-color: rgb(155, 140, 140);
 }

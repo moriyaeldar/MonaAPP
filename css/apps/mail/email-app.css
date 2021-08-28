@@ -1,3 +1,19 @@
-.email-app{
+.email-app {
     background-color: #f7efef;
+    height: 100vh;
+}
+
+.email-app .side {
+    width: 120px;
+}
+
+.email-app .compose-btn {
+    background-color: #ffff;
+    height: 50px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.email-app .compose-btn:hover {
+    background-color: #f8dede;
 }
