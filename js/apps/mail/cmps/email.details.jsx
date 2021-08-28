@@ -14,7 +14,8 @@ export class EmailDetails extends React.Component {
     }
 
     exportMailToNote = () => {
-        exportService.mailToNote(this.state.mail).then(note => noteService.addNote(note, "note-txt"))
+        exportService.mailToNote(this.state.mail).then(note => noteService.addNote(note, "note-txt", "mailExport"))
+        console.log('trying to add note');
     }
 
     loadMail() {
@@ -38,7 +39,7 @@ export class EmailDetails extends React.Component {
         return (
             <section className="mail-details">
                 <button className="delete-btn">🗑</button>
-                <button className="export-btn" onClick={this.exportMailToNote()}>➱</button>
+                <button className="export-btn" onClick={this.exportMailToNote}>➱</button>
                 <h2>{mail.subject} </h2>
                 <h4>{mail.to}</h4>
                 <p>{mail.body}</p>

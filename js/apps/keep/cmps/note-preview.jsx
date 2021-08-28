@@ -1,6 +1,8 @@
 // const { Link } = ReactRouterDOM;
 import { utilService } from "../../../services/util.service.js";
+import { exportService } from "../../../services/export.service.js";
 import { NoteStyle } from "./note-style.jsx";
+import { emailService } from "../../mail/services/email.service.js";
 export class NotePreview extends React.Component {
   state = {
     note: null,
@@ -10,7 +12,7 @@ export class NotePreview extends React.Component {
       txt: null,
       URL: null,
     },
-    style:null
+    style: null
   };
 
   componentDidMount() {
@@ -38,37 +40,42 @@ export class NotePreview extends React.Component {
   onClickEdit = () => {
     this.setState({ isEdittedMode: true });
   };
-  ChangeNoteStyle(style){
+  ChangeNoteStyle(style) {
     this.setState({ style: style });
   }
-  onChangeNoteStyle=(style)=>{
+  onChangeNoteStyle = (style) => {
     this.ChangeNoteStyle(style)
   }
-  onClickNotePin=()=>{
-this.props.onPinNote(this.props.note)
+  onClickNotePin = () => {
+    this.props.onPinNote(this.props.note)
 
   }
 
-  onClickNoteCopy=()=>{
+  onClickNoteCopy = () => {
     this.props.onCopyNote(this.props.note)
 
+  }
+
+  onExportToMail = () => {
+    console.log('note to export:', this.state.note.note);
+    exportService.noteToMail(this.state.note.note).then(mail => emailService.addMail(mail, "noteExport"));
   }
 
   render() {
     const { note } = this.props;
     return (
       <article className="note-preview grid main-layout" style={this.state.style}
-    >
+      >
         <p>{note.info.title}</p>
 
-       <div>{note.info.URL && <img src={note.info.URL} />}</div> 
+        <div>{note.info.URL && <img src={note.info.URL} />}</div>
 
-       <div> {note.info.videoURL && <video src={note.info.videoURL}></video>}</div>
+        <div> {note.info.videoURL && <video src={note.info.videoURL}></video>}</div>
 
         {note.info.todos && (
           <div className="todos">
             {note.info.todos.map((todo) => (
-              <li key={utilService.makeId()}>{todo.txt.split(",") }</li>
+              <li key={utilService.makeId()}>{todo.txt.split(",")}</li>
             ))}
           </div>
         )}
@@ -104,7 +111,8 @@ this.props.onPinNote(this.props.note)
         <button onClick={this.onClickNoteCopy}>❐</button>
         <button onClick={this.onClickEdit}>🖋</button>
         <button onClick={this.onClickDelete}>✖</button>
-<NoteStyle onChangeNoteStyle={this.onChangeNoteStyle}/>
+        <button onClick={this.onExportToMail}>➱</button>
+        <NoteStyle onChangeNoteStyle={this.onChangeNoteStyle} />
       </article>
     );
   }

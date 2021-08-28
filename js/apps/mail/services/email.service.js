@@ -76,8 +76,13 @@ function getUnreadCount() {
     return Promise.resolve(unreadMails.length);
 }
 
-function addMail({ to, subject, body }) {
-    const mail = _createMail(to, subject, body);
+function addMail(mailToEdit,source='mail') {
+    if(source==='noteExport'){
+        var mail =mailToEdit;
+    } else{
+        const{to, subject, body}=mailToEdit;
+        var mail = _createMail(to, subject, body);
+    }
     gMails.unshift(mail);
     _saveMailsToStorage()
     console.log(gMails);
