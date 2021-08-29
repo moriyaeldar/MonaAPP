@@ -11,7 +11,7 @@ export function NotesList({
   onChangeStyleNote
 }) {
   return (
-    <div className="note-list flex main-layout">
+    <div className="note-list ">
       <section className="note-add">
         <NoteAdd onAddNote={onAddNote} />
       </section>
@@ -50,7 +50,6 @@ export function NotesList({
         ))} 
          {console.log(notes)}
 
-         <p className="other-comment">Other comments</p>
       </section>
     </div>
   );

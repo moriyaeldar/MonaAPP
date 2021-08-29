@@ -14,7 +14,7 @@ h1{
     margin: 10px;
 }
 .book-preview {
-    background-color: rgba(236, 167, 231, 0.842);
+    background-color: rgba(183, 214, 231, 0.842);
 
     width: 250px;
     box-shadow: rgba(76, 33, 94, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;

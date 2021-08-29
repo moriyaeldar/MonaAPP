@@ -1,6 +1,7 @@
 .email-app {
-    background-color: #f7efef;
+    background-color:white;
     height: 100vh;
+    margin-top: 30px;
 }
 
 .email-app .side {

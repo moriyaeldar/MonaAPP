@@ -69,7 +69,7 @@ export class NotePreview extends React.Component {
     const { note } = this.props;
     return (
       <article
-        className="note-preview grid main-layout"
+        className="note-preview grid"
         style={this.props.note.style}
       >
         <button onClick={this.onClickNotePin}>📌</button>
@@ -79,7 +79,6 @@ export class NotePreview extends React.Component {
         <div>{note.info.URL && <img src={note.info.URL} />}</div>
 
         <div>
-          {" "}
           {note.info.videoURL && <video src={note.info.videoURL}></video>}
         </div>
 

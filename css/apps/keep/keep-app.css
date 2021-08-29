@@ -1,5 +1,7 @@
 .keep-app{
-  justify-content: space-between;
+  margin-top: 30px;
+  justify-content: center;
+  align-content: center;
 }
 
 .keep-app button{

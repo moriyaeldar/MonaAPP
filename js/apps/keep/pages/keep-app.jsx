@@ -67,7 +67,7 @@ export class KeepApp extends React.Component {
     return !notes || !notes.length ? (
       <p>loading...</p>
     ) : (
-      <section className="keep-app flex roboto main-layout">
+      <section className="keep-app roboto">
         <NoteFilter onSetFilter={this.onSetFilter} />
         <NotesList
         key="notes"

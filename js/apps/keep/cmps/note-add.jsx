@@ -46,7 +46,7 @@ export class NoteAdd extends React.Component {
 
   render() {
     return (
-      <section className="add flex main-layout">
+      <section className="add  ">
         {!this.state.isPicChosen &&
           !this.state.isVideoChosen &&
           !this.state.isTodoChosen && (

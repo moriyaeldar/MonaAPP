@@ -1,6 +1,4 @@
-.flex{
-    display: flex;
-}
+
 
 .grid{
     display: grid;
@@ -9,4 +7,35 @@
 .main-layout{
     background-color: white
     ;
+}
+
+/* flex helpers  */
+
+.flex {
+    display: flex;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.center {
+    justify-content: center;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex .auto {
+    flex: auto;
+}
+
+/* list-helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
 }

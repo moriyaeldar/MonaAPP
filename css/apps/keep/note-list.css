@@ -11,6 +11,7 @@ justify-content:space-between;
 
 .note-prev{
     justify-content: space-between;
+    margin: 6px;
 }
 
 .notes-pin{
@@ -18,16 +19,12 @@ Break-inside:avoid-column
 }
 
 .notes-for-display{
-   grid-column:3 250px;
+    grid-template-columns:repeat(3,auto);
 }
 
 .notes-no-pin{
-    margin-top: 500px;
+    margin-top: 400px;
     Break-inside:avoid-column
 }
 
 
-.other-comment{
-    margin-top: 500px;
-    
-}

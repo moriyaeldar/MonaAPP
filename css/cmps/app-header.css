@@ -1,9 +1,24 @@
 .app-header h1{
-    color: rgb(39, 130, 221);
+    color: rgb(30, 113, 238);
     font-family: fantasy;
+    margin: 10px;
 }
 .app-header span{
     color: rgb(87, 85, 80);
     font-family: fantasy;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: rgb(78, 76, 76);
+    margin: 10px;
+}
+
+.main-nav a:hover {
+    color: chocolate;
+}
+
+.main-nav{
+    margin: 10px;
 }
  

@@ -1,6 +1,6 @@
 .email-preview {
-    border-top: 1px solid #8a8080;
-    background-color: #f7efef;
+    border-top: 1px solid #c5c0c0cb;
+    background-color: rgba(230, 229, 227, 0.829);
     min-height: 40px;
     align-items: center;
     text-align: left;
@@ -55,5 +55,6 @@
 }
 
 .email-preview.read {
-    background-color: rgb(155, 140, 140);
+    background-color: rgb(180, 170, 170);
+    border-style: unset;
 }

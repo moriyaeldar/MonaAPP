@@ -25,7 +25,7 @@ export class NoteFilter extends React.Component {
   render() {
     const { title, type} = this.state.filterBy;
     return (
-      <form className="note-filter" onSubmit={this.onFilter}>
+      <form className="note-filter flex" onSubmit={this.onFilter}>
         <label htmlFor="title"></label>
         <input
           name="title"

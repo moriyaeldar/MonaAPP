@@ -8,6 +8,7 @@ import { MailApp } from "./js/apps/mail/pages/email-app.jsx"
 import { About } from "./js/pages/app-about.jsx";
 import { Home } from "./js/pages/app-home.jsx";
 import { AppHeader } from "./js/cmps/app-header.jsx";
+import { AppBottom } from "./js/cmps/app-buttom.jsx";
 
 export function App() {
   
@@ -26,6 +27,7 @@ export function App() {
           <Route path="/" component={Home} />
         </Switch>
       </main>
+      <AppBottom/>
     </Router>
   );
 }

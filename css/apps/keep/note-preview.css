@@ -1,12 +1,14 @@
 .note-preview{
-    
- margin: 10px;
  background-color: rgb(255, 255, 255);
  border-style: solid;
  border-color: rgba(197, 191, 191, 0.849);
  border-radius: 10px;
  border-width: 1px;
- width: 200px;
+ margin-left: 5px;
+}
+
+.note-preview p{
+    margin: 10px;
 }
 
 
