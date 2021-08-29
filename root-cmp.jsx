@@ -10,7 +10,7 @@ import { Home } from "./js/pages/app-home.jsx";
 import { AppHeader } from "./js/cmps/app-header.jsx";
 
 export function App() {
-  
+
   return (
     <Router>
       <header>
@@ -18,6 +18,7 @@ export function App() {
       </header>
       <main>
         <Switch>
+          
           <Route path="/book/:bookId" component={BookDetails} />
           <Route path="/book" component={BookApp} />
           <Route path="/mail" component={MailApp} />

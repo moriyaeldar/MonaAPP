@@ -484,13 +484,16 @@ function _addBook(bookToEdit){
   return Promise.resolve()
 }
 
-function addReview(book,review){
-let currBook=getBookById(book.id)
-.then((currBook)=>{
-currBook.reviews.unshift({review})
-})
-return Promise.resolve(book)
-
+function addReview(bookToEdit, review) {
+  console.log(bookToEdit);
+  var bookIdx = gBooks.findIndex(function (book) {
+      return book.id === bookToEdit;
+  })
+  console.log(bookIdx);
+  console.log(gBooks[bookIdx]);
+  if (!(gBooks[bookIdx].reviews)) { gBooks[bookIdx].reviews = [] }
+  gBooks[bookIdx].reviews.unshift({ id: review.id, name: review.name, rate: review.rate, txt: review.txt, date: review.date })
+  return Promise.resolve()
 }
 
 function addGoogleBook(googleBook) {
@@ -523,9 +526,11 @@ function addGoogleBook(googleBook) {
 }
 
 function getBookById(bookId) {
+  console.log('searching book');
     var book = gBooks.find(function (book) {
         return bookId ===book.id
     })
+    console.log('book found in service:', book);
     return Promise.resolve(book)
 }
 
