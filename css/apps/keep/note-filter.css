@@ -1,7 +1,14 @@
 .note-filter input{
     border-style: unset;
-    margin: 4px;
+    margin: 5px;
     border-style: solid;
 border-radius: 20px;
 border-color: rgb(212, 212, 212);
+width: 70%;
+height: 40px;
+background-color: rgba(230, 221, 221, 0.425);
+}
+
+.note-filter{
+    margin: 10px;
 }

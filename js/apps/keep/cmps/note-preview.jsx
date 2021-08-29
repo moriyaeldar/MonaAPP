@@ -1,5 +1,6 @@
 // const { Link } = ReactRouterDOM;
 import { utilService } from "../../../services/util.service.js";
+import { noteService } from "../services/note.service.js";
 import { exportService } from "../../../services/export.service.js";
 import { NoteStyle } from "./note-style.jsx";
 import { emailService } from "../../mail/services/email.service.js";
@@ -16,7 +17,7 @@ export class NotePreview extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ note: this.props });
+    this.setState({ note: this.props.note });
   }
 
   onClickEditNote(ev) {
@@ -25,6 +26,7 @@ export class NotePreview extends React.Component {
       this.props.onEditNote(this.state.note, this.state.noteToEdit);
     });
     console.log(this.state.note, this.state.noteToEdit);
+    this.setState({ isEdittedMode: false });
   }
 
   handleChange = (ev) => {
@@ -34,7 +36,7 @@ export class NotePreview extends React.Component {
   };
 
   onClickDelete = () => {
-    this.props.onDeleteNote(this.state);
+    this.props.onDeleteNote(this.props.note);
   };
 
   onClickEdit = () => {
@@ -42,19 +44,21 @@ export class NotePreview extends React.Component {
   };
   ChangeNoteStyle(style) {
     this.setState({ style: style });
+    this.props.note.style=style
+    console.log((this.props.note));
+    this.props.onChangeStyleNote(this.props.note,style)
+
   }
   onChangeNoteStyle = (style) => {
-    this.ChangeNoteStyle(style)
-  }
+    this.ChangeNoteStyle(style);
+  };
   onClickNotePin = () => {
-    this.props.onPinNote(this.props.note)
-
-  }
+    this.props.onPinNote(this.props.note);
+  };
 
   onClickNoteCopy = () => {
-    this.props.onCopyNote(this.props.note)
-
-  }
+    this.props.onCopyNote(this.props.note);
+  };
 
   onExportToMail = () => {
     console.log('note to export:', this.state.note.note);
@@ -64,18 +68,24 @@ export class NotePreview extends React.Component {
   render() {
     const { note } = this.props;
     return (
-      <article className="note-preview grid main-layout" style={this.state.style}
+      <article
+        className="note-preview grid"
+        style={this.props.note.style}
       >
+        <button onClick={this.onClickNotePin}>📌</button>
+
         <p>{note.info.title}</p>
 
         <div>{note.info.URL && <img src={note.info.URL} />}</div>
 
-        <div> {note.info.videoURL && <video src={note.info.videoURL}></video>}</div>
+        <div>
+          {note.info.videoURL && <video src={note.info.videoURL}></video>}
+        </div>
 
         {note.info.todos && (
           <div className="todos">
             {note.info.todos.map((todo) => (
-              <li key={utilService.makeId()}>{todo.txt.split(",")}</li>
+              <li key={utilService.makeId()}>{todo}</li>
             ))}
           </div>
         )}
@@ -107,7 +117,6 @@ export class NotePreview extends React.Component {
             </form>
           )}
         </h4>
-        <button onClick={this.onClickNotePin}>📌</button>
         <button onClick={this.onClickNoteCopy}>❐</button>
         <button onClick={this.onClickEdit}>🖋</button>
         <button onClick={this.onClickDelete}>✖</button>

@@ -42,7 +42,7 @@ export class NoteStyle extends React.Component {
           type={inputType}
           name="style"
         />
-        <button onClick={this.onSetStyle}>👍</button>
+        <button className="apply-btn" onClick={this.onSetStyle}>Apply changes</button>
 
         <select value={inputType} onChange={this.onChangeInputType}>
           <option value="color">🎨</option>

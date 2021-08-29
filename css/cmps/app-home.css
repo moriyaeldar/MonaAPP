@@ -5,15 +5,32 @@
 }
 
 .home h1 {
-  color: rgb(39, 130, 221);
+  color: rgb(30, 113, 238);
   font-family: fantasy;
-  font-size: 55px;
+  font-size: 65px;
 }
 .home h2 {
-  color: grey;
+  color: lightslategrey;
+  margin-bottom: 100PX;
 }
 .home span {
   color: rgb(87, 85, 80);
   font-family: fantasy;
-  font-size: 55px;
+  font-size: 65px;
 }
+
+.home img{
+  width: 50%;
+  height: 300PX;
+  padding: 10px;
+  background-color: lightslategrey;
+}
+
+.home-txt{
+  background-color: white;
+text-align: center;
+padding: 20px;
+border-style: solid;
+border-color: rgba(179, 175, 169, 0.87);
+}
+

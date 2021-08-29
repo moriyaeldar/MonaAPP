@@ -1,11 +1,17 @@
 .about{
-    justify-content: center;
-    align-items: center;
-    color:rgb(39, 130, 221);
+    color: #4f5155f1;
+    font-family:monospace;
+    font-size: 20px;
+    padding-bottom: 100px;
+    padding-top: 100px;
 }
 
 .about h1{
-    color: lightslategray;
+    color: rgb(142, 152, 163);
     font-weight: bold;
-    
+    font-family: monospace;
+    border-style: solid;
+    padding: 15px;
+    font-size: 35px;
 }
+

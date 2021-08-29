@@ -7,18 +7,19 @@ export function NotesList({
   onAddNote,
   onEditNote,
   onPinNote,
-  onCopyNote
+  onCopyNote,
+  onChangeStyleNote
 }) {
   return (
-    <div className="note-list flex main-layout">
+    <div className="note-list ">
       <section className="note-add">
         <NoteAdd onAddNote={onAddNote} />
       </section>
-      <section className="note-prev flex">
+      <section className="note-prev flex" >
         <p>Attached</p>
         {notes.map((note) => (
-          <section className="notes-for-display flex">
-            <div className="notes-pin flex">
+          <section className="notes-for-display grid" >
+            <div className="notes-pin">
               {note.isPinned && (
                 <NotePreview
                   key={note.id}
@@ -30,8 +31,7 @@ export function NotesList({
                 />
               )}
             </div>
-
-            <div className="notes-no-pin flex">
+            <div className="notes-no-pin" >
               {!note.isPinned && (
                 <NotePreview
                   key={note.id}
@@ -40,11 +40,16 @@ export function NotesList({
                   onEditNote={onEditNote}
                   onPinNote={onPinNote}
                   onCopyNote={onCopyNote}
+                  onChangeStyleNote={onChangeStyleNote}
                 />
-              )}
-            </div>
+              )} 
+
+            </div>  
+
           </section>
-        ))}
+        ))} 
+         {console.log(notes)}
+
       </section>
     </div>
   );

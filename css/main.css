@@ -21,33 +21,13 @@
 @import "./apps/mail/email-filter.css";
 @import "./apps/mail/main-mail.css";
 @import "./apps/keep/main-layout.css";
+@import "./cmps/app-bottom.css";
+@import "./apps/mail/email-sort.css";
 
 * {
     box-sizing: border-box;
 }
 
-
-/* flex helpers  */
-
-.flex {
-    display: flex;
-}
-
-.flex.space-between {
-    justify-content: space-between;
-}
-
-.flex.center {
-    justify-content: center;
-}
-
-.flex.align-center {
-    align-items: center;
-}
-
-.flex .auto {
-    flex: auto;
-}
 
    
 body {

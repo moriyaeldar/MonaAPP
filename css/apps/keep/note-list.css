@@ -11,17 +11,20 @@ justify-content:space-between;
 
 .note-prev{
     justify-content: space-between;
+    margin: 6px;
 }
 
 .notes-pin{
-justify-self: start;
-max-height: 500px;
+Break-inside:avoid-column
 }
 
 .notes-for-display{
-    flex-wrap: wrap;
+    grid-template-columns:repeat(3,auto);
 }
 
 .notes-no-pin{
-    margin-top: 500px;
+    margin-top: 400px;
+    Break-inside:avoid-column
 }
+
+

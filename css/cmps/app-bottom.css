@@ -1,0 +1,10 @@
+.bottom{
+    background-color: darkgrey;
+    text-align: center;
+    height: 50px;
+    color:rgba(64, 98, 250, 0.829);
+}
+
+.bottom p{
+    padding-top: 30px;
+}
