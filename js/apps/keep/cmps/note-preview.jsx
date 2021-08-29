@@ -84,9 +84,10 @@ export class NotePreview extends React.Component {
 
         {note.info.todos && (
           <div className="todos">
-            {note.info.todos.map((todo) => (
-              <li key={utilService.makeId()}>{todo}</li>
-            ))}
+            {note.info.todos.map((todo) => {
+              <li key={utilService.makeId()}>{todo.txt}</li>
+            }
+            )}
           </div>
         )}
 

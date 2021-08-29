@@ -40,8 +40,8 @@ export class KeepApp extends React.Component {
       this.loadNotes();
     });
   };
-  onChangeStyleNote = (note,style) => {
-    noteService.changeStyleNote(note,style).then(() => {
+  onChangeStyleNote = (note, style) => {
+    noteService.changeStyleNote(note, style).then(() => {
       this.loadNotes();
     });
   };
@@ -64,13 +64,11 @@ export class KeepApp extends React.Component {
 
   render() {
     const { notes } = this.state;
-    return !notes || !notes.length ? (
-      <p>loading...</p>
-    ) : (
+    return (
       <section className="keep-app roboto">
         <NoteFilter onSetFilter={this.onSetFilter} />
         <NotesList
-        key="notes"
+          key="notes"
           notes={notes}
           onDeleteNote={this.onDeleteNote}
           onAddNote={this.onAddNote}
@@ -80,6 +78,7 @@ export class KeepApp extends React.Component {
           onChangeStyleNote={this.onChangeStyleNote}
         />
       </section>
-    );
+    )
   }
+
 }
